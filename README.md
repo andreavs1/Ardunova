@@ -3,7 +3,8 @@
 #Integrantes Del Grupo
 
    -Alvarado Velasquez, Andrea Ayelen
--dos Santos Jazmin
+   
+   -dos Santos Jazmin
 
 Este es un proyecto base en PHP pensado para que los alumnos trabajen con una aplicación simple de autenticación. Incluye:
 
