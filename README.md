@@ -1,5 +1,9 @@
 # Proyecto Base - PDISC 7° Año 4° División
 
+#Integrantes Del Grupo
+
+-Alvarado Velasquez, Andrea Ayelen
+
 Este es un proyecto base en PHP pensado para que los alumnos trabajen con una aplicación simple de autenticación. Incluye:
 
 - Un formulario de registro.
