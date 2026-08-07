@@ -9,6 +9,8 @@
    -Robledo, Joan Marcelo
 
    -Cañas Morena
+   
+   -pacheco mora
 
 Este es un proyecto base en PHP pensado para que los alumnos trabajen con una aplicación simple de autenticación. Incluye:
 
