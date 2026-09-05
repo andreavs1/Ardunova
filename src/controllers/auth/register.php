@@ -1,50 +1,78 @@
 <?php
-require_once __DIR__ . '/../../config/bootstrap.php';
 
-// Paso clave #1: Validar tipo de solicitud ----------------------
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {  // Si la solicitud no es POST, volves al register
-  header('Location: /src/views/auth/register.php');
-  exit;
+require_once __DIR__ . '/../../config/bootstrap.php';
+require_once __DIR__ . '/../../config/database.php';
+
+// Si el usuario ya inició sesión, redirigir al inicio
+if (isset($_SESSION['user_id'])) {
+    header('Location: /index.php');
+    exit;
 }
 
-// Paso clave #2: Tomar datos -----------------------------------
-$data = [
-  'email'           => trim($_POST['email'] ?? ''), // trim(str) saca los espacios al inicio y al final
-  'name'            => trim($_POST['name'] ?? ''),
-  'password'        => $_POST['password'] ?? '',
-  'repeatPassword'  => $_POST['password'] ?? ''
+$errors = [];
+$old = [
+    'name' => '',
+    'email' => ''
 ];
 
-// Validaciones básicas
-// ...
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+    $confirm_password = $_POST['confirm_password'] ?? '';
 
-// Paso clave #3: Hacer cosas ----------------------------------
-try {
-  // Validamos que el usuario no exista
-  // ...
+    $old['name'] = $name;
+    $old['email'] = $email;
 
+    // Validaciones de entrada
+    if (empty($name)) {
+        $errors[] = 'El nombre es obligatorio.';
+    }
 
-  // Hasheamos la contraseña, nunca se guarda en texto plano
-  $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
+    if (empty($email)) {
+        $errors[] = 'El correo electrónico es obligatorio.';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = 'El correo electrónico no es válido.';
+    }
 
-  // Insertamos en DB
-  $stmt = $pdo->prepare('INSERT INTO users (name, email, password) VALUES (:name, :email, :password)');
-  $stmt->execute([
-    'name'     => $data['name'],
-    'email'    => $data['email'],
-    'password' => $hashedPassword,
-  ]);
+    if (empty($password)) {
+        $errors[] = 'La contraseña es obligatoria.';
+    } elseif (strlen($password) < 6) {
+        $errors[] = 'La contraseña debe tener al menos 6 caracteres.';
+    }
 
-  // Cargamos $_SESSION['user'], para poder pasar al index
-  $_SESSION['user'] = [
-    'id'    => $pdo->lastInsertId(),
-    'name'  => $data['name'],
-    'email' => $data['email'],
-  ];
+    if ($password !== $confirm_password) {
+        $errors[] = 'Las contraseñas no coinciden.';
+    }
 
-  // Pateado para el index
-  header('Location: /src/views/index.php');
-  exit;
-} catch (PDOException $e) {
-  exit;
+    // Comprobar que el email no esté registrado previamente
+    if (empty($errors)) {
+        $stmt = $pdo->prepare('SELECT id FROM users WHERE email = :email LIMIT 1');
+        $stmt->execute(['email' => $email]);
+        if ($stmt->fetch()) {
+            $errors[] = 'El correo electrónico ya está registrado.';
+        }
+    }
+
+    // Registrar al usuario si no hay errores
+    if (empty($errors)) {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt = $pdo->prepare('INSERT INTO users (name, email, password) VALUES (:name, :email, :password)');
+        $success = $stmt->execute([
+            'name' => $name,
+            'email' => $email,
+            'password' => $hashedPassword
+        ]);
+
+        if ($success) {
+            $_SESSION['flash_success'] = 'Registro exitoso. Ya puedes iniciar sesión.';
+            header('Location: /src/controllers/auth/login.php');
+            exit;
+        } else {
+            $errors[] = 'Ocurrió un error al registrar el usuario. Inténtalo de nuevo.';
+        }
+    }
 }
+
+require_once __DIR__ . '/../../views/auth/register.php';
