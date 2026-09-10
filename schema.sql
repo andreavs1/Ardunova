@@ -1,6 +1,6 @@
-CREATE DATABASE pdi_base;
+CREATE DATABASE Ardunova;
 
-USE pdi_base;
+USE Ardunova;
 
 CREATE TABLE IF NOT EXISTS users (
     id         CHAR(36)     NOT NULL DEFAULT (UUID()),
