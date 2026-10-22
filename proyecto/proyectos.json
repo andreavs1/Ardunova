@@ -1,0 +1,101 @@
+[
+  
+{
+  "id":1,
+  "titulo": "Parpadeo de LED (Blink)",
+  "nivel": "Principiante",
+  "descripcion": "Aprendé a encender y apagar un LED con Arduino.",
+  "imagen": "../assets/img/lcd.jpg",
+  "enlace": "ledblink.php"
+},
+
+  {
+    "id":2,
+    "titulo": "Pantalla LCD Dinámica",
+    "nivel": "Intermedio",
+    "descripcion": "Mostrá información y mensajes en una pantalla LCD.",
+    "imagen": "../assets/img/lcd-dinamica.jpg",
+    "enlace": "lcddinamica.php"
+  },
+  {
+    "id":3,
+    "titulo": "Semáforo Inteligente",
+    "nivel": "Principiante",
+    "descripcion": "Construí un semáforo con luces LED y Arduino.",
+    "imagen": "../assets/img/semaforo-arduino.png",
+    "enlace": "SemaforoA.php"
+  },
+  {
+    "id":4,
+    "titulo": "Sensor Ultrasónico",
+    "nivel": "Intermedio",
+    "descripcion": "Medí distancias utilizando un sensor ultrasónico.",
+    "imagen": "../assets/img/ultrasonico.jpg",
+    "enlace": "sensorUltrasonico.php"
+  },
+  {
+    "id":5,
+    "titulo": "Domótica",
+    "nivel": "Intermedio",
+    "descripcion": "Conocé cómo automatizar funciones de una vivienda.",
+    "imagen": "../assets/img/domotica.jpg",
+    "enlace": "domotica.php"
+  },
+  {
+    "id":6,
+    "titulo": "LED con Botón",
+    "nivel": "Principiante",
+    "descripcion": "Controlá un LED mediante un pulsador.",
+    "imagen": "../assets/img/ledBoton.jpg",
+    "enlace": "ledboton.php"
+  },
+  {
+    "id":7,
+    "titulo": "Potenciómetro",
+    "nivel": "Principiante",
+    "descripcion": "Regulá el comportamiento de un circuito con un potenciómetro.",
+    "imagen": "../assets/img/potenciometro.jpg",
+    "enlace": "potenciometro.php"
+  },
+  {
+    "id":8,
+    "titulo": "Sensor de Luz (LDR)",
+    "nivel": "Intermedio",
+    "descripcion": "Detectá cambios de luz usando un sensor LDR.",
+    "imagen": "../assets/img/sensorDeLuz.jpg",
+    "enlace": "sensorluZ.php"
+  },
+  {
+    "id":9,
+    "titulo": "Sistema de Riego Automático",
+    "nivel": "Avanzado",
+    "descripcion": "Aprendé cómo automatizar el riego de las plantas.",
+    "imagen": "../assets/img/wifi.jpg",
+    "enlace": "riego.php"
+  },
+  {
+    "id":10,
+    "titulo": "Seguidor de Línea",
+    "nivel": "Avanzado",
+    "descripcion": "Descubrí cómo un robot puede seguir una línea.",
+    "imagen": "../assets/img/robot-seguidor-linea.png",
+    "enlace": "seguidorlinea.php"
+  },
+  {
+    "id":11,
+    "titulo": "Robot Evita Obstáculos",
+    "nivel": "Avanzado",
+    "descripcion": "Creá un robot que detecte y evite obstáculos.",
+    "imagen": "../assets/img/robotobstaculos.jpg",
+    "enlace": "robotobstaculos.php"
+  },
+  {
+    "id":12,
+    "titulo": "Servomotor",
+    "nivel": "Intermedio",
+    "descripcion": "Controlá el movimiento y el ángulo de un servomotor con Arduino.",
+    "imagen": "../assets/img/servoMotor.jpg",
+    "enlace": "servoMotor.php"
+  }
+]
+
