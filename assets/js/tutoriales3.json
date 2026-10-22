@@ -1,0 +1,312 @@
+{
+    "17": {
+      "badge": "AVANZADO - TUTORIAL 17",
+      "titulo": "17. Librerías",
+      "subtitulo": "Modularidad y extensión de funciones nativas mediante el Administrador de Librerías de Arduino.",
+      "concepto_principal": {
+        "titulo": "Modularidad y Reutilización de Código",
+        "descripcion": "Las **librerías** son colecciones de código de programación precompilado en C/C++ que empaquetan funciones complejas, algoritmos y protocolos de comunicación para facilitar la integración de componentes de hardware sofisticados sin necesidad de reescribir desde cero los registros de bajo nivel del microcontrolador."
+      },
+      "funciones_clave": [
+        {
+          "icono": "📦",
+          "titulo": "#include <Libreria.h>",
+          "descripcion": "Directiva del preprocesador que importa la cabecera del módulo al programa.",
+          "detalle": "Permite acceder a todas las clases, estructuras de datos, constantes y métodos definidos dentro de la librería importada."
+        },
+        {
+          "icono": "⚙️",
+          "titulo": "Instanciación de Objetos",
+          "descripcion": "Creación de variables globales que representan el hardware físico.",
+          "detalle": "Por ejemplo: `DHT dht(PIN_DHT, DHT11);` crea la instancia 'dht' pasándole como parámetros de configuración el pin de datos y el modelo del sensor."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "UsoLibreriaDHT.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "#include <DHT.h>\n\n#define DHTPIN 2\n#define DHTTYPE DHT11\n\nDHT dht(DHTPIN, DHTTYPE);\n\nvoid setup() {\n  Serial.begin(9600);\n  dht.begin();\n}\n\nvoid loop() {\n  float humedad = dht.readHumidity();\n  float temp = dht.readTemperature();\n  Serial.print(\"Humedad: \"); Serial.print(humedad);\n  Serial.print(\"% | Temp: \"); Serial.print(temp); Serial.println(\"°C\");\n  delay(2000);\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador de Sensor DHT11 mediante Librería",
+        "instruccion": "Iniciá el simulador y haz clic sobre el módulo DHT11 para ajustar manualmente humedad y temperatura.",
+        "project_id": "345678901234567890",
+        "nota": "Ventaja de la librería: Oculta más de 300 líneas de timing crítico de pulsos requeridos por el sensor."
+      },
+      "quiz": {
+        "pregunta": "¿Qué directiva del preprocesador se coloca al inicio del código para añadir una librería externa en Arduino?",
+        "opciones": [
+          { "texto": "#include <Libreria.h>", "es_correcta": true },
+          { "texto": "#import <Libreria.h>", "es_correcta": false },
+          { "texto": "#define Libreria.h", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Excelente! `#include` le indica al compilador que incorpore las cabeceras antes de la compilación.",
+        "mensaje_incorrecto": "Incorrecto. En C/C++ se utiliza la directiva `#include`."
+      }
+    },
+    "18": {
+      "badge": "AVANZADO - TUTORIAL 18",
+      "titulo": "18. Pantallas LCD",
+      "subtitulo": "Interfaz hombre-máquina (HMI) con pantallas alfanuméricas de cristal líquido 16x2 y 20x4.",
+      "concepto_principal": {
+        "titulo": "Despliegue Visual de Información",
+        "descripcion": "Las pantallas **LCD (Liquid Crystal Display)** son los módulos de salida alfanuméricos más populares en electrónica. La versión estándar **16x2** cuenta con 16 columnas y 2 filas para imprimir caracteres ASCII personalizables e indicadores de sensores."
+      },
+      "funciones_clave": [
+        {
+          "icono": "🖥️",
+          "titulo": "lcd.setCursor(columna, fila)",
+          "descripcion": "Posiciona el cursor donde comenzará a escribirse el siguiente texto.",
+          "detalle": "Utiliza un sistema de coordenadas de base cero (0 a 15, 0 a 1). Por ejemplo, `lcd.setCursor(0, 1)` sitúa el texto al inicio de la segunda fila."
+        },
+        {
+          "icono": "🧹",
+          "titulo": "lcd.clear()",
+          "descripcion": "Borra completamente la pantalla y posiciona el cursor en (0, 0).",
+          "detalle": "Limpia la pantalla para actualizar los menús del sistema."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "PantallaLCD16x2.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 5, 4, 3, 2);\n\nvoid setup() {\n  lcd.begin(16, 2);\n  lcd.setCursor(0, 0);\n  lcd.print(\"PROYECTO ARDUNOVA\");\n  lcd.setCursor(0, 1);\n  lcd.print(\"Nivel Avanzado\");\n}\n\nvoid loop() {\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador de Pantalla LCD 16x2",
+        "instruccion": "Presioná Play en el simulador para ver cómo se renderizan los textos formateados.",
+        "project_id": "345678901234567890",
+        "nota": "Ajuste de contraste: El pin VO se conecta a un potenciómetro de 10kΩ."
+      },
+      "quiz": {
+        "pregunta": "¿Qué coordenadas de columna y fila se le pasan a lcd.setCursor() para comenzar a escribir en la segunda fila desde el inicio?",
+        "opciones": [
+          { "texto": "(0, 1)", "es_correcta": true },
+          { "texto": "(1, 2)", "es_correcta": false },
+          { "texto": "(2, 1)", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Correcto! En base cero, la columna inicial es 0 y la segunda fila es la 1.",
+        "mensaje_incorrecto": "Incorrecto. Recuerda que las filas y columnas se cuentan desde cero: (0, 1)."
+      }
+    },
+    "19": {
+      "badge": "AVANZADO - TUTORIAL 19",
+      "titulo": "19. Comunicación Bluetooth",
+      "subtitulo": "Conectividad inalámbrica punto a punto mediante módulos HC-05 / HC-06.",
+      "concepto_principal": {
+        "titulo": "Redes de Área Personal Inalámbricas (PAN)",
+        "descripcion": "La comunicación Bluetooth permite vincular la placa Arduino con dispositivos móviles de forma inalámbrica a distancias de hasta 10 metros mediante módulos receptores transceptores serie como el **HC-05** o **HC-06**."
+      },
+      "funciones_clave": [
+        {
+          "icono": "📶",
+          "titulo": "SoftwareSerial(rxPin, txPin)",
+          "descripcion": "Permite emular un puerto serie secundario por software en cualquier pin digital.",
+          "detalle": "Libera los pines de hardware 0 (RX) y 1 (TX) para no interferir con el cable USB."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "ControlBluetooth.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "#include <SoftwareSerial.h>\n\nSoftwareSerial miBT(10, 11);\nconst int pinRelay = 13;\n\nvoid setup() {\n  pinMode(pinRelay, OUTPUT);\n  miBT.begin(9600);\n}\n\nvoid loop() {\n  if (miBT.available()) {\n    char dato = miBT.read();\n    if (dato == 'A') {\n      digitalWrite(pinRelay, HIGH);\n    } else if (dato == 'B') {\n      digitalWrite(pinRelay, LOW);\n    }\n  }\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador de Puerto Serie Bluetooth",
+        "instruccion": "Iniciá el simulador y enviá los caracteres 'A' y 'B' desde la consola.",
+        "project_id": "345678901234567890",
+        "nota": "Lógica: La línea RX del módulo opera a 3.3V."
+      },
+      "quiz": {
+        "pregunta": "¿Para qué sirve la librería SoftwareSerial en proyectos con módulos Bluetooth?",
+        "opciones": [
+          { "texto": "Para crear un puerto serie secundario en pines digitales arbitrarios", "es_correcta": true },
+          { "texto": "Para aumentar la potencia del transmisor a 100 metros", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Excelente! SoftwareSerial emula líneas UART sin bloquear el puerto USB.",
+        "mensaje_incorrecto": "Incorrecto. Se utiliza para crear puertos serie adicionales vía software."
+      }
+    },
+    "20": {
+      "badge": "AVANZADO - TUTORIAL 20",
+      "titulo": "20. Comunicación Wi-Fi",
+      "subtitulo": "Integración a Internet de las Cosas (IoT) mediante módulos ESP8266 y ESP32.",
+      "concepto_principal": {
+        "titulo": "Internet de las Cosas (IoT)",
+        "descripcion": "La conectividad Wi-Fi lleva los proyectos con Arduino a la nube, permitiendo conectar sensores y actuadores a Internet utilizando microcontroladores con conectividad Wi-Fi nativa como el **ESP8266** o **ESP32**."
+      },
+      "funciones_clave": [
+        {
+          "icono": "🌐",
+          "titulo": "WiFi.begin(SSID, Password)",
+          "descripcion": "Conecta el módulo a la red inalámbrica indicada con credenciales WPA2.",
+          "detalle": "Inicia la negociación DHCP para obtener una dirección IP local."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "ConexionWiFiIoT.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "#include <WiFi.h>\n\nconst char* ssid = \"RedEscolar\";\nconst char* password = \"Clave1234\";\n\nvoid setup() {\n  Serial.begin(115200);\n  WiFi.begin(ssid, password);\n  \n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n  }\n  Serial.println(\"\\nConectado con exito!\");\n}\n\nvoid loop() {\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador Wi-Fi IoT",
+        "instruccion": "Ejecutá el simulador para comprobar la conexión a la red inalámbrica de prueba.",
+        "project_id": "345678901234567890",
+        "nota": "Red simulada Wokwi-GUEST habilitada."
+      },
+      "quiz": {
+        "pregunta": "¿Qué método oficial de la librería WiFi se invoca para iniciar la autenticación con un router?",
+        "opciones": [
+          { "texto": "WiFi.begin(ssid, password)", "es_correcta": true },
+          { "texto": "WiFi.connect(ssid, password)", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Correcto! `WiFi.begin()` inicia el enlace Wi-Fi.",
+        "mensaje_incorrecto": "Incorrecto. Se utiliza `WiFi.begin(ssid, password)`."
+      }
+    },
+    "21": {
+      "badge": "AVANZADO - TUTORIAL 21",
+      "titulo": "21. Comunicación I2C",
+      "subtitulo": "Protocolo serie de dos hilos (SDA / SCL) para buses con múltiples dispositivos.",
+      "concepto_principal": {
+        "titulo": "Bus de Comunicación I2C",
+        "descripcion": "I2C es un bus de comunicación serie que utiliza únicamente dos líneas compartidas: **SDA (Datos)** y **SCL (Reloj)** para conectar hasta 127 dispositivos con direcciones hexadecimales únicas."
+      },
+      "funciones_clave": [
+        {
+          "icono": "🔌",
+          "titulo": "#include <Wire.h>",
+          "descripcion": "Librería nativa de Arduino para controlar las transmisiones en el bus I2C.",
+          "detalle": "En la placa Arduino UNO, las líneas I2C están en los pines A4 (SDA) y A5 (SCL)."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "LCD_I2C.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "#include <Wire.h>\n#include <LiquidCrystal_I2C.h>\n\nLiquidCrystal_I2C lcd(0x27, 16, 2);\n\nvoid setup() {\n  lcd.init();\n  lcd.backlight();\n  lcd.setCursor(0, 0);\n  lcd.print(\"Bus I2C Activo\");\n}\n\nvoid loop() {\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador de Pantalla I2C",
+        "instruccion": "Observa cómo se comunica la pantalla con solo dos cables de bus.",
+        "project_id": "345678901234567890",
+        "nota": "Ahorro de pines digitales en el proyecto."
+      },
+      "quiz": {
+        "pregunta": "¿Cuáles son los dos nombres de las líneas de señal requeridas para el bus I2C?",
+        "opciones": [
+          { "texto": "SDA (Datos) y SCL (Reloj)", "es_correcta": true },
+          { "texto": "TX (Transmisión) y RX (Recepción)", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Excelente! I2C requiere las líneas SDA y SCL.",
+        "mensaje_incorrecto": "Incorrecto. Las líneas son SDA y SCL."
+      }
+    },
+    "22": {
+      "badge": "AVANZADO - TUTORIAL 22",
+      "titulo": "22. Comunicación SPI",
+      "subtitulo": "Protocolo sincrónico Full-Duplex de alta velocidad mediante 4 hilos.",
+      "concepto_principal": {
+        "titulo": "Bus SPI (Serial Peripheral Interface)",
+        "descripcion": "El protocolo **SPI** es un bus sincrónico de cuatro hilos diseñado para transferir información a alta velocidad en lectores de tarjetas MicroSD y pantallas gráficas."
+      },
+      "funciones_clave": [
+        {
+          "icono": "⚡",
+          "titulo": "MOSI, MISO, SCK y SS",
+          "descripcion": "Las 4 líneas físicas de la interfaz SPI.",
+          "detalle": "MOSI (Salida de datos), MISO (Entrada de datos), SCK (Reloj) y SS (Selección de esclavo)."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "LecturaSD.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "#include <SPI.h>\n#include <SD.h>\n\nconst int chipSelect = 10;\n\nvoid setup() {\n  Serial.begin(9600);\n  if (!SD.begin(chipSelect)) {\n    Serial.println(\"Error en tarjeta SD\");\n    return;\n  }\n  Serial.println(\"Tarjeta SD Lista\");\n}\n\nvoid loop() {\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador de Almacenamiento MicroSD",
+        "instruccion": "Iniciá la simulación para probar el bus SPI.",
+        "project_id": "345678901234567890",
+        "nota": "Pines hardware: MOSI (11), MISO (12), SCK (13)."
+      },
+      "quiz": {
+        "pregunta": "¿Qué pin de la interfaz SPI selecciona cuál esclavo debe comunicarse?",
+        "opciones": [
+          { "texto": "SS / CS (Slave Select)", "es_correcta": true },
+          { "texto": "SCK (Serial Clock)", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Muy bien! El pin SS habilita el esclavo activo.",
+        "mensaje_incorrecto": "Incorrecto. Se utiliza el pin SS (Slave Select)."
+      }
+    },
+    "23": {
+      "badge": "AVANZADO - TUTORIAL 23",
+      "titulo": "23. Varios componentes",
+      "subtitulo": "Integración simultánea de sensores y actuadores en sistemas complejos.",
+      "concepto_principal": {
+        "titulo": "Arquitectura de Sistemas Integrados",
+        "descripcion": "En este tutorial se enseña a coordinar múltiples sensores y periféricos en el mismo programa compartiendo GND y administrando entradas y salidas."
+      },
+      "funciones_clave": [
+        {
+          "icono": "🔋",
+          "titulo": "GND Unificado",
+          "descripcion": "Masa común para todos los módulos del circuito.",
+          "detalle": "Todos los componentes deben compartir la misma referencia de tierra."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "EstacionMeteorologica.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "#include <Wire.h>\n#include <LiquidCrystal_I2C.h>\n#include <DHT.h>\n\n#define DHTPIN 2\n#define DHTTYPE DHT11\n\nDHT dht(DHTPIN, DHTTYPE);\nLiquidCrystal_I2C lcd(0x27, 16, 2);\n\nvoid setup() {\n  dht.begin();\n  lcd.init();\n  lcd.backlight();\n}\n\nvoid loop() {\n  float temp = dht.readTemperature();\n  lcd.setCursor(0, 0);\n  lcd.print(\"Temp: \"); lcd.print(temp);\n  delay(2000);\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador Estación Meteorológica",
+        "instruccion": "Modificá la temperatura para ver el cambio en la pantalla LCD.",
+        "project_id": "345678901234567890",
+        "nota": "Combina I2C con entrada digital de sensor."
+      },
+      "quiz": {
+        "pregunta": "¿Por qué es fundamental unir las líneas de tierra (GND) en un proyecto con varios componentes?",
+        "opciones": [
+          { "texto": "Para establecer una referencia de tensión de 0V común a todos los componentes", "es_correcta": true },
+          { "texto": "Para duplicar la velocidad del reloj del microcontrolador", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Correcto! El GND unificado es indispensable para que las señales tengan la misma referencia.",
+        "mensaje_incorrecto": "Incorrecto. Se deben unir las tierras para garantizar la referencia de 0V."
+      }
+    },
+    "24": {
+      "badge": "AVANZADO - TUTORIAL 24",
+      "titulo": "24. Solución de errores",
+      "subtitulo": "Estrategias de depuración (debugging) y diagnóstico de hardware.",
+      "concepto_principal": {
+        "titulo": "Depuración (Debugging)",
+        "descripcion": "Aprender a identificar errores de sintaxis, errores de lógica en el código y fallos físicos en el protoboard para resolver problemas rápidamente."
+      },
+      "funciones_clave": [
+        {
+          "icono": "🐞",
+          "titulo": "Serial.println() para Debugging",
+          "descripcion": "Impresión de marcas de control en el Monitor Serie.",
+          "detalle": "Permite rastrear por qué partes del código está pasando la ejecución."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "Debugging.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "const int pinSensor = A0;\n\nvoid setup() {\n  Serial.begin(9600);\n  Serial.println(\"[DEBUG] Inicio de prueba...\");\n}\n\nvoid loop() {\n  int lectura = analogRead(pinSensor);\n  Serial.print(\"[DEBUG] Lectura A0 = \");\n  Serial.println(lectura);\n  delay(1000);\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador de Banco de Pruebas",
+        "instruccion": "Abrí el puerto serie para ver los mensajes de depuración.",
+        "project_id": "345678901234567890",
+        "nota": "Permite identificar rápidamente lecturas erróneas."
+      },
+      "quiz": {
+        "pregunta": "¿Qué método sencillo de depuración nos permite verificar por qué rama de un 'if' pasa el programa?",
+        "opciones": [
+          { "texto": "Imprimir mensajes informativos en la consola mediante Serial.println()", "es_correcta": true },
+          { "texto": "Desconectar y volver a conectar el cable USB", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Excelente! La técnica de traza con `Serial.println()` es muy efectiva.",
+        "mensaje_incorrecto": "Incorrecto. Se imprimen mensajes en el puerto serie."
+      }
+    }
+  }
