@@ -16,29 +16,48 @@ $data = [
 ];
 
 // Validaciones básicas
-// ...
+if (
+  empty($data['email']) ||
+  empty($data['name']) ||
+  empty($data['password']) ||
+  empty($data['repeatPassword'])
+) {
+  header('Location: /src/views/auth/register.php?error=empty');
+  exit;
+}
 
-// Paso clave #3: Hacer cosas ----------------------------------
+// Validar que las contraseñas coincidan
+if ($data['password'] !== $data['repeatPassword']) {
+  header('Location: /src/views/auth/register.php?error=nomatch');
+  exit;
+}
+
 try {
-  // Validamos que el usuario no exista
-  // ...
 
+  // Verificar si el usuario ya existe
+  $stmt = $pdo->prepare('SELECT id FROM users WHERE email = :email');
+  $stmt->execute(['email' => $data['email']]);
 
-  // Hasheamos la contraseña, nunca se guarda en texto plano
+  if ($stmt->fetch()) {
+    header('Location: /src/views/auth/register.php?error=exists');
+    exit;
+  }
+
+  // Hashear contraseña
   $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
 
-  // Insertamos en DB
+  // Insertar usuario
   $stmt = $pdo->prepare('INSERT INTO users (name, email, password) VALUES (:name, :email, :password)');
   $stmt->execute([
-    'name'     => $data['name'],
-    'email'    => $data['email'],
+    'name' => $data['name'],
+    'email' => $data['email'],
     'password' => $hashedPassword,
   ]);
 
-  // Cargamos $_SESSION['user'], para poder pasar al index
+  // Crear sesión
   $_SESSION['user'] = [
-    'id'    => $pdo->lastInsertId(),
-    'name'  => $data['name'],
+    'id' => $pdo->lastInsertId(),
+    'name' => $data['name'],
     'email' => $data['email'],
   ];
 
