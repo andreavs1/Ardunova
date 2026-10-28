@@ -128,7 +128,7 @@ $active_page = 'inicio';
                 <span class="tag-nivel principiante">Principiante</span>
                 <h3>Semáforo inteligente</h3>
                 <p>Estructuración básica de temporizaciones de luces viales.</p>
-                <a class="btn btn-gradient mt-1 w-100" href="proyecto/SemaforoA.php">Ver proyecto <span aria-hidden="true">→</span></a>
+                <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/SemaforoA.php">Ver proyecto <span aria-hidden="true">→</span></a>
               </div>
             </article>
           </div>
@@ -142,7 +142,7 @@ $active_page = 'inicio';
                 <span class="tag-nivel intermedio">Intermedio</span>
                 <h3>Auto Seguidor de Línea</h3>
                 <p>Diseño de un robot móvil autónomo con sensores infrarrojos.</p>
-                <a class="btn btn-gradient mt-1 w-100" href="proyecto/seguidorlinea.php">Ver proyecto <span aria-hidden="true">→</span></a>
+                <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/seguidorlinea.php">Ver proyecto <span aria-hidden="true">→</span></a>
               </div>
             </article>
           </div>
@@ -160,7 +160,7 @@ $active_page = 'inicio';
                 <span class="tag-nivel principiante">Principiante</span>
                 <h3>Pantalla LCD</h3>
                 <p>Conocé cómo mostrar información en una pantalla usando Arduino.</p>
-                <a class="btn btn-gradient mt-1 w-100" href="proyecto/lcddinamica.php">Ver proyecto <span aria-hidden="true">→</span></a>
+                <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/lcddinamica.php">Ver proyecto <span aria-hidden="true">→</span></a>
               </div>
             </article>
           </div>
@@ -174,7 +174,7 @@ $active_page = 'inicio';
                 <span class="tag-nivel intermedio">Intermedio</span>
                 <h3>Sensor Ultrasónico</h3>
                 <p>Aprendé a medir distancias y usar sensores en tus proyectos.</p>
-                <a class="btn btn-gradient mt-1 w-100" href="proyecto/SensorUltrasonico.php">Ver proyecto <span aria-hidden="true">→</span></a>
+                <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/SensorUltrasonico.php">Ver proyecto <span aria-hidden="true">→</span></a>
               </div>
             </article>
           </div>
@@ -204,7 +204,7 @@ $active_page = 'inicio';
 
     <div class="row g-4">
       <div class="col-12 col-md-4">
-        <a class="learning-card" href="principiantes/principiantes.php">
+        <a class="learning-card" href="src/views/principiantes/principiantes.php">
           <div class="learning-card-image">
             <img src="assets/img/principiante.png" alt="Placa Arduino para comenzar desde cero">
             <span>01 · Fundamentos</span>
@@ -217,7 +217,7 @@ $active_page = 'inicio';
         </a>
       </div>
       <div class="col-12 col-md-4">
-        <a class="learning-card" href="intermedio/intermedio.php">
+        <a class="learning-card" href="src/views/intermedio/intermedio.php">
           <div class="learning-card-image">
             <img src="assets/img/intermedio.jpg" alt="Proyecto electrónico de nivel intermedio">
             <span>02 · Práctica</span>
@@ -230,7 +230,7 @@ $active_page = 'inicio';
         </a>
       </div>
       <div class="col-12 col-md-4">
-        <a class="learning-card" href="avanzado/avanzado.php">
+        <a class="learning-card" href="src/views/avanzado/avanzado.php">
           <div class="learning-card-image">
             <img src="assets/img/avanzado.png" alt="Proyecto avanzado de electrónica y robótica">
             <span>03 · Innovación</span>

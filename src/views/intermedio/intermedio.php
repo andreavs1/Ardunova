@@ -12,13 +12,13 @@ $active_page = 'tutoriales';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nivel Intermedio - ARDUNOVA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css?v=20261020-5">
+    <link rel="stylesheet" href="../../../assets/css/style.css?v=20261020-5">
 
 </head>
 
 <body> 
 
-<?php include __DIR__ . '/../includes/header.php'; ?>
+<?php include __DIR__ . '/../../../includes/header.php'; ?>
 
 <main>
 
@@ -59,7 +59,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="<?= $base ?>assets/img/condicionales.png" alt="Condicionales" class="card-img-top">
+                    <img src="<?= $base = 'a/Ardunova' ?>assets/img/condicionales.png" alt="Condicionales" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel intermedio">Tutorial 9</span>
@@ -74,7 +74,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="<?= $base ?>assets/img/bucle.png" alt="Bucles" class="card-img-top">
+                    <img src="<?= $base = 'a/Ardunova' ?>assets/img/bucle.png" alt="Bucles" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel intermedio">Tutorial 10</span>
@@ -89,7 +89,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="<?= $base ?>assets/img/sensores.jpg" alt="Sensores" class="card-img-top">
+                    <img src="<?= $base = 'a/Ardunova' ?>assets/img/sensores.jpg" alt="Sensores" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel intermedio">Tutorial 11</span>
@@ -104,7 +104,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="<?= $base ?>assets/img/lecanalogicas.png" alt="Lecturas analógicas" class="card-img-top">
+                    <img src="<?= $base = 'a/Ardunova' ?>assets/img/lecanalogicas.png" alt="Lecturas analógicas" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel intermedio">Tutorial 12</span>
@@ -119,7 +119,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="<?= $base ?>assets/img/bucle.png" alt="Potenciómetro" class="card-img-top">
+                    <img src="<?= $base = 'a/Ardunova' ?>assets/img/bucle.png" alt="Potenciómetro" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel intermedio">Tutorial 13</span>
@@ -134,7 +134,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="<?= $base ?>assets/img/ultrasonico.jpg" alt="Sensor HC-SR04" class="card-img-top">
+                    <img src="<?= $base = 'a/Ardunova' ?>assets/img/ultrasonico.jpg" alt="Sensor HC-SR04" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel intermedio">Tutorial 14</span>
@@ -149,7 +149,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="<?= $base ?>assets/img/servo.jpg" alt="Servomotores" class="card-img-top">
+                    <img src="<?= $base = 'a/Ardunova' ?>assets/img/servo.jpg" alt="Servomotores" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel intermedio">Tutorial 15</span>
@@ -164,7 +164,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="<?= $base ?>assets/img/monitorserial.png" alt="Monitor Serial" class="card-img-top">
+                    <img src="<?= $base = 'a/Ardunova' ?>assets/img/monitorserial.png" alt="Monitor Serial" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel intermedio">Tutorial 16</span>
@@ -185,7 +185,7 @@ $active_page = 'tutoriales';
 
 </main>
 
-<?php include __DIR__ . '/../includes/footer.php'; ?>
+<?php include __DIR__ . '/../../../includes/footer.php'; ?>
 
 <!-- Script limpio para la búsqueda (ignora tildes comunes) -->
 <script>

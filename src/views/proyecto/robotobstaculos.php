@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Proyecto: Robot Esquivador de Obstáculos - ARDUNOVA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css?v=20261020-5">
+    <link rel="stylesheet" href="../../../assets/css/style.css?v=20261020-5">
 </head>
 
 <body>
   
-<?php include __DIR__ . '/../includes/header.php'; ?>
+<?php include __DIR__ . '/../../../includes/header.php'; ?>
 
 <main class="container section-container">
     <div class="project-header">
@@ -39,7 +39,7 @@
         <div class="col-12 col-lg-5">
             <div class="card h-100">
                 <div class="card-image">
-                    <img src="<?= BASE_URL ?>assets/img/robotobstaculos.jpg" alt="Componentes del proyecto Robot Esquivador de Obstáculos">
+                    <img src="<? $base = 'a/Ardunova' ?>assets/img/robotobstaculos.jpg" alt="Componentes del proyecto Robot Esquivador de Obstáculos">
                 </div>
             </div>
         </div>
@@ -158,11 +158,11 @@ void detener() {
         </div>
 
         <div class="text-center button-container">
-           <a href="<?= BASE_URL ?>proyecto/proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a>
+           <a href="<?= $base = 'a/Ardunova' ?>/../../../proyecto/proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a>
         </div>
     </section>
 </main>
 
-<?php include __DIR__ . '/../includes/footer.php'; ?>
+<?php include __DIR__ . '/../../../includes/footer.php'; ?>
 </body>
 </html>

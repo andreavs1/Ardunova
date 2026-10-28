@@ -13,12 +13,12 @@ $active_page = 'donaciones';
     <title>Donaciones - ARDUNOVA</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css?v=20261020-5">
+    <link rel="stylesheet" href="../../assets/css/style.css?v=20261020-5">
 </head>
 
 <body>
 
-<?php include 'includes/header.php'; ?>
+<?php include __DIR__ . '/../../includes/header.php'; ?>
 
 <main class="container section-container py-4">
 
@@ -172,7 +172,7 @@ $active_page = 'donaciones';
 
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include __DIR__ . '/../../includes/footer.php'; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 

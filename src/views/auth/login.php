@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'conexion.php';
+include __DIR__ . '/../../config/conexion.php';
 
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="auth-body">
   <main class="auth-page-wrapper">
     <article class="auth-card">
-      <img src="assets/img/logo.jpg" alt="Logo de ARDUNOVA" class="auth-logo">
+      <img src="/../assets/img/logo.jpg" alt="Logo de ARDUNOVA" class="auth-logo">
       <h1 class="h2 text-center mb-4">Iniciar sesión</h1>
       <?php if ($error): ?><div class="alert alert-danger" role="alert"><?= htmlspecialchars($error) ?></div><?php endif; ?>
       <form method="POST" class="w-100" novalidate>
@@ -50,6 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </form>
     </article>
   </main>
-  <?php include 'includes/footer.php'; ?>
+  <?php include __DIR__ . '/../../../includes/footer.php';?>
 </body>
 </html>

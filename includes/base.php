@@ -7,3 +7,7 @@ if (!isset($base)) {
     $rel  = trim(substr($dir, strlen($root)), '/');
     $base = ($rel === '') ? '' : str_repeat('../', substr_count($rel, '/') + 1);
 }
+
+if (!defined('BASE_URL')) {
+    define('BASE_URL', $base);
+}

@@ -12,14 +12,14 @@
           <li><a href="<?= $base ?>index.php">Inicio</a></li>
           <li><a href="<?= $base ?>tutoriales.php">Tutoriales</a></li>
           <li><a href="<?= $base ?>proyectos.php">Proyectos</a></li>
-          <li><a href="<?= $base ?>recursos.php">Recursos</a></li>
+          <li><a href="<?= $base ?>src/views/recursos.php">Recursos</a></li>
         </ul>
       </div>
       <div class="col-6 col-md-3 col-lg-3">
         <h3>Comunidad</h3>
         <ul class="footer-links">
-          <li><a href="<?= $base ?>nosotros.php">Nosotros</a></li>
-          <li><a href="<?= $base ?>login.php">Iniciar sesión</a></li>
+          <li><a href="<?= $base ?>src/views/nosotros.php">Nosotros</a></li>
+          <li><a href="<?= $base ?>src/views/auth/login.php">Iniciar sesión</a></li>
         </ul>
       </div>
       <div class="col-12 col-lg-3">

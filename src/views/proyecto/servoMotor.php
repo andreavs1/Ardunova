@@ -15,12 +15,12 @@ $active_page = 'proyectos';
     <title>Servomotor con Arduino - ARDUNOVA</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css?v=20261020-5">
+    <link rel="stylesheet" href="../../../assets/css/style.css?v=20261020-5">
 </head>
 
 <body>
 
-<?php include __DIR__ . '/../includes/header.php'; ?>
+<?php include __DIR__ . '/../../../includes/header.php'; ?>
 
 <main class="container section-container py-4">
 
@@ -43,7 +43,7 @@ $active_page = 'proyectos';
 
     <div class="text-center my-4">
         <img
-            src="../assets/img/servomotor.jpg"
+            src="<?= BASE_URL ?>assets/img/servoMotor.jpg"
             alt="Servomotor utilizado en el proyecto"
             class="img-fluid rounded"
             style="max-width: 500px;"
@@ -79,7 +79,7 @@ $active_page = 'proyectos';
 
     <div class="text-center my-4">
         <img
-            src="../assets/img/servomotor1.png"
+            src="<?= BASE_URL ?>assets/img/servoMotor1 (2).jpg"
             alt="Imagen complementaria del proyecto de servomotor"
             class="img-fluid rounded"
             style="max-width: 600px;"
@@ -147,15 +147,12 @@ void loop() {
     </p>
 
     <div class="text-center button-container my-4">
-        <a href="proyectos.php" class="btn btn-outline-cyan">
-            ← Volver a Proyectos
-        </a>
+    <a href="<?= $base = 'a/Ardunova' ?>/../../../proyecto/proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a> 
     </div>
 
 </main>
 
-<?php include __DIR__ . '/../includes/chatbot.php'; ?>
-<?php include __DIR__ . '/../includes/footer.php'; ?>
+<?php include __DIR__ . '/../../../includes/footer.php'; ?>
 
 </body>
 </html>

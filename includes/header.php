@@ -19,22 +19,22 @@ $usuario_sesion = $_SESSION['usuario'] ?? null;
           <li class="nav-item"><a class="nav-link <?= $active_page === 'inicio' ? 'active' : '' ?>" href="<?= $base ?>index.php">Inicio</a></li>
           <li class="nav-item"><a class="nav-link <?= $active_page === 'tutoriales' ? 'active' : '' ?>" href="<?= $base ?>tutoriales.php">Tutoriales</a></li>
           <li class="nav-item"><a class="nav-link <?= $active_page === 'proyectos' ? 'active' : '' ?>" href="<?= $base ?>proyectos.php">Proyectos</a></li>
-          <li class="nav-item"><a class="nav-link <?= $active_page === 'recursos' ? 'active' : '' ?>" href="<?= $base ?>recursos.php">Recursos</a></li>
-          <li class="nav-item"><a class="nav-link <?= $active_page === 'donaciones' ? 'active' : '' ?>" href="<?= $base ?>donaciones.php">Donaciones</a></li>
-          <li class="nav-item"><a class="nav-link <?= $active_page === 'nosotros' ? 'active' : '' ?>" href="<?= $base ?>nosotros.php">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link <?= $active_page === 'recursos' ? 'active' : '' ?>" href="<?= $base ?>src/views/recursos.php">Recursos</a></li>
+          <li class="nav-item"><a class="nav-link <?= $active_page === 'donaciones' ? 'active' : '' ?>" href="<?= $base ?>src/views/donaciones.php">Donaciones</a></li>
+          <li class="nav-item"><a class="nav-link <?= $active_page === 'nosotros' ? 'active' : '' ?>" href="<?= $base ?>src/views/nosotros.php">Nosotros</a></li>
           <?php if ($usuario_sesion): ?>
             <li class="nav-item dropdown ms-lg-2">
               <a class="nav-link dropdown-toggle user-link" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <?= htmlspecialchars($usuario_sesion) ?>
               </a>
               <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="userDropdown">
-                <li><a class="dropdown-item" href="<?= $base ?>perfil.php">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="<?= $base ?>src/views/perfil.php">Mi perfil</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="<?= $base ?>logout.php">Cerrar sesión</a></li>
+                <li><a class="dropdown-item text-danger" href="<?= $base ?>src/controllers/auth/logout.php">Cerrar sesión</a></li>
               </ul>
             </li>
           <?php else: ?>
-            <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-gradient btn-sm px-3" href="<?= $base ?>login.php">Iniciar sesión</a></li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-gradient btn-sm px-3" href="<?= $base ?>src/views/auth/login.php">Iniciar sesión</a></li>
           <?php endif; ?>
         </ul>
       </div>

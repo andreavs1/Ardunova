@@ -6,11 +6,11 @@
     <meta name="description" content="Medición de distancia mediante un sensor ultrasónico conectado a Arduino.">
     <title>Sensor Ultrasónico de Distancia - ARDUNOVA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css?v=20261020-5">
+    <link rel="stylesheet" href="../../../assets/css/style.css?v=20261020-5">
 </head>
 
 <body>
-<?php include __DIR__ . '/../includes/header.php'; ?>
+<?php include __DIR__ . '/../../../includes/header.php'; ?>
 
     <main class="container section-container">
     <div class="contenedor">
@@ -105,12 +105,12 @@ void loop() {
         </section>
 
         <div class="text-center button-container my-4">
-           <a href="<?= BASE_URL ?>proyecto/proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a> 
+           <a href="<?= $base = 'a/Ardunova' ?>/../../../proyecto/proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a> 
         </div>
     </div>
 </main>
 
-<?php include __DIR__ . '/../includes/footer.php'; ?>
+<?php include __DIR__ . '/../../../includes/footer.php'; ?>
 </body>
 </html>
 

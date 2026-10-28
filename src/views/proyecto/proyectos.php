@@ -16,12 +16,12 @@ $active_page = 'proyectos';
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="../assets/css/style.css?v=20261020-5">
+  <link rel="stylesheet" href="../../../assets/css/style.css?v=20261020-5">
 </head>
 
 <body>
 
-<?php include '../includes/header.php'; ?>
+<?php include __DIR__ . '/../../../includes/header.php'; ?>
 
 <main class="container section-container">
 
@@ -50,9 +50,9 @@ $active_page = 'proyectos';
 </main>
 
 
-<?php include '../includes/chatbot.php'; ?>
+<?php include __DIR__ . '/../../../includes/chatbot.php'; ?>
 
-<?php include '../includes/footer.php'; ?>
+<?php include __DIR__ . '/../../../includes/footer.php'; ?>
 
 
 

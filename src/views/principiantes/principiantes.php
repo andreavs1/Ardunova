@@ -12,11 +12,11 @@ $active_page = 'tutoriales';
 
 <title>Nivel Principiante - ARDUNOVA</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css?v=20261020-5">
+  <link rel="stylesheet" href="../../../assets/css/style.css?v=20261020-5">
   
 </head>
 <body>
-<?php include __DIR__ . '/../includes/header.php'; ?>
+<?php include __DIR__ . '/../../../includes/header.php'; ?>
 
 <main>
 <!-- SECCIÓN DE ENCABEZADO Y BUSCADOR -->
@@ -57,7 +57,7 @@ $active_page = 'tutoriales';
 <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
 <article class="card">
 <div class="card-image">
-    <img src="../assets/img/arduinoquees.jpg" alt="¿Qué es Arduino?" class="card-img-top">
+    <img src="../../../assets/img/arduinoquees.jpg" alt="¿Qué es Arduino?" class="card-img-top">
 </div>
 <div class="card-body">
 <span class="tag-nivel principiante">
@@ -80,7 +80,7 @@ Ver tutorial
 <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
 <article class="card">
 <div class="card-image">
-    <img src="../assets/img/partes-arduino.jpg" alt="Placa Arduino" class="card-img-top">
+    <img src="../../../assets/img/partes-arduino.jpg" alt="Placa Arduino" class="card-img-top">
 </div>
 <div class="card-body">
 <span class="tag-nivel principiante">
@@ -103,7 +103,7 @@ Ver tutorial
 <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
 <article class="card">
 <div class="card-image">
-    <img src="../assets/img/arduinoide.png" alt="Arduino IDE" class="card-img-top">
+    <img src="../../../assets/img/arduinoide.png" alt="Arduino IDE" class="card-img-top">
 </div>
 <div class="card-body">
 <span class="tag-nivel principiante">
@@ -126,7 +126,7 @@ Ver tutorial
 <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
 <article class="card">
 <div class="card-image">
-    <img src="../assets/img/setup.png" alt="Estructura del programa" class="card-img-top">
+    <img src="../../../assets/img/setup.png" alt="Estructura del programa" class="card-img-top">
 </div>
 <div class="card-body">
 <span class="tag-nivel principiante">
@@ -149,7 +149,7 @@ Ver tutorial
 <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
 <article class="card">
 <div class="card-image">
-    <img src="../assets/img/variables.png" alt="Variables" class="card-img-top">
+    <img src="../../../assets/img/variables.png" alt="Variables" class="card-img-top">
 </div>
 <div class="card-body">
 <span class="tag-nivel principiante">
@@ -172,7 +172,7 @@ Ver tutorial
 <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
 <article class="card">
 <div class="card-image">
-    <img src="../assets/img/entradas-analogicas.jpg" alt="Entradas y salidas" class="card-img-top">
+    <img src="../../../assets/img/entradas-analogicas.jpg" alt="Entradas y salidas" class="card-img-top">
 </div>
 <div class="card-body">
 <span class="tag-nivel principiante">
@@ -195,7 +195,7 @@ Ver tutorial
 <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
 <article class="card">
 <div class="card-image">
-    <img src="../assets/img/encenderled.png" alt="Encender LED" class="card-img-top">
+    <img src="../../../assets/img/encenderled.png" alt="Encender LED" class="card-img-top">
 </div>
 <div class="card-body">
 <span class="tag-nivel principiante">
@@ -218,7 +218,7 @@ Ver tutorial
 <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
 <article class="card">
 <div class="card-image">
-    <img src="../assets/img/pulsador.jpg" alt="Pulsadores" class="card-img-top">
+    <img src="../../../assets/img/pulsador.jpg" alt="Pulsadores" class="card-img-top">
 </div>
 <div class="card-body">
 <span class="tag-nivel principiante">
@@ -248,7 +248,7 @@ Ver tutorial
 
 </main>
 
-<?php include __DIR__ . '/../includes/footer.php'; ?>
+<?php include __DIR__ . '/../../../includes/footer.php'; ?>
 
 <!-- Script limpio para la búsqueda (ignora tildes comunes) -->
 <script>

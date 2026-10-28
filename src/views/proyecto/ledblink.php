@@ -5,12 +5,12 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Proyecto: Parpadeo de LED - ARDUNOVA</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261020-5">
+<link rel="stylesheet" href="../../../assets/css/style.css?v=20261020-5">
 </head>
 
 <body>
 
-<?php include __DIR__ . '/../includes/header.php'; ?>
+<?php include __DIR__ . '/../../../includes/header.php'; ?>
 <main class="container section-container">
   <div class="project-header">
     <span class="tag-nivel principiante">Principiante</span>
@@ -62,8 +62,8 @@ void loop() {
     <p class="mb-0">El LED se prenderá y apagará cada segundo de forma continua.</p>
   </div>
   <div class="text-center button-container">
-    <a href="<?= BASE_URL ?>proyecto/proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a>
+    <a href="<?= $base = 'a/Ardunova' ?>/../../../proyecto/proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a>
 </div></section>
 </main>
-<?php include __DIR__ . '/../includes/footer.php'; ?>
+<?php include __DIR__ . '/../../../includes/footer.php'; ?>
 </body></html>
