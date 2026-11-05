@@ -11,17 +11,24 @@ async function loadLesson() {
     const lessonId = urlParams.get('id') || '17';
 
     try {
-        // Carga con ruta relativa explícita y timestamp anti-caché
-        const response = await fetch('tutoriales.json');
+        // Consultamos directamente al PHP que trae los datos de MySQL para avanzado
+        const response = await fetch(`obtener_tutorial_avanzado.php?id=${lessonId}`);
         
+        const rawText = await response.text();
+
         if (!response.ok) {
-            throw new Error(`No se pudo acceder a tutoriales.json (Código HTTP: ${response.status})`);
+            throw new Error(`No se pudo acceder al tutorial (Código HTTP: ${response.status})`);
         }
 
-        const database = await response.json();
-        const data = database[lessonId];
+        let data;
+        try {
+            data = JSON.parse(rawText);
+        } catch (e) {
+            console.error("El servidor no devolvió un JSON válido:", rawText);
+            throw new Error("El archivo PHP devolvió un error de servidor o HTML en lugar de JSON. Revisá la consola.");
+        }
 
-        if (!data) {
+        if (!data || data.error) {
             app.innerHTML = `
                 <div class="container my-5 text-center">
                     <div class="alert alert-warning p-4 rounded-4 shadow-sm">
