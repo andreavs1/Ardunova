@@ -7,7 +7,7 @@ include(__DIR__ . '/../_layouts/layout.php');
     <h1>Detalle del post</h1>
   </div>
   <div class="col d-flex justify-content-end align-items-center">
-    <a class="btn btn-primary" href="/src/controllers/posts/index.php">Volver al listado</a>
+    <a class="btn btn-primary" href="../../controllers/posts/index.php">Volver al listado</a>
   </div>
 </header>
 
@@ -21,8 +21,8 @@ include(__DIR__ . '/../_layouts/layout.php');
           </div>
           <?php if (isset($_SESSION['user']) && $_SESSION['user']['id'] === $post['user_id']): ?>
             <div class="col d-flex justify-content-end align-items-center">
-              <a class="btn btn-secondary me-3" href="/src/views/posts/update.php?id=<?= $post['id'] ?>">Editar</a>
-              <a class="btn btn-danger" href="/src/controllers/posts/delete.php?id=<?= $post['id'] ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este post?');">Eliminar</a>
+              <a class="btn btn-secondary me-3" href="update.php?id=<?= $post['id'] ?>">Editar</a>
+              <a class="btn btn-danger" href="../../controllers/posts/delete.php?id=<?= $post['id'] ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este post?');">Eliminar</a>
             </div>
           <?php endif; ?>
         </div>

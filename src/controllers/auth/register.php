@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../config/bootstrap.php';
 
 // Paso clave #1: Validar tipo de solicitud ----------------------
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {  // Si la solicitud no es POST, volves al register
-  header('Location: /src/views/auth/register.php');
+  header('Location: ../../views/auth/register.php');
   exit;
 }
 
@@ -22,13 +22,13 @@ if (
   empty($data['password']) ||
   empty($data['repeatPassword'])
 ) {
-  header('Location: /src/views/auth/register.php?error=empty');
+  header('Location: ../../views/auth/register.php?error=empty');
   exit;
 }
 
 // Validar que las contraseñas coincidan
 if ($data['password'] !== $data['repeatPassword']) {
-  header('Location: /src/views/auth/register.php?error=nomatch');
+  header('Location: ../../views/auth/register.php?error=nomatch');
   exit;
 }
 
@@ -39,7 +39,7 @@ try {
   $stmt->execute(['email' => $data['email']]);
 
   if ($stmt->fetch()) {
-    header('Location: /src/views/auth/register.php?error=exists');
+    header('Location: ../../views/auth/register.php?error=exists');
     exit;
   }
 
@@ -62,7 +62,7 @@ try {
   ];
 
   // Pateado para el index
-  header('Location: /src/views/index.php');
+  header('Location: ../../views/index.php');
   exit;
 } catch (PDOException $e) {
   exit;

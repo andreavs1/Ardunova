@@ -33,11 +33,11 @@ if (isset($_SESSION['usuario']) && isset($conn)) {
     <meta name="description" content="Sistema de riego automático con sensor de humedad de suelo, relé y bomba de agua controlado por Arduino.">
     <title>Sistema de Riego Automático - ARDUNOVA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css?v=20261020-5">
+    <link rel="stylesheet" href="../../../assets/css/style.css?v=20261020-5">
 </head>
 
 <body>
-<?php include __DIR__ . '/../includes/header.php'; ?>
+<?php include __DIR__ . '/../../../includes/header.php'; ?>
 
     <main class="container section-container">
         <span class="tag-nivel avanzado">Avanzado</span>
@@ -57,7 +57,7 @@ if (isset($_SESSION['usuario']) && isset($conn)) {
             <div class="col-12 col-lg-5">
                 <div class="card h-100 shadow-sm border-0">
                     <div class="card-image">
-                        <img src="../assets/img/sistemaDeRiego.jpg" alt="Componentes del proyecto Riego Automático" class="img-fluid rounded">
+                        <img src="../../../assets/img/sistemaDeRiego.jpg" alt="Componentes del proyecto Riego Automático" class="img-fluid rounded">
                     </div>
                 </div>
             </div>
@@ -227,7 +227,7 @@ void loop() {
         </section>
 
        <div class="text-center button-container my-5 d-flex justify-content-center gap-3 flex-wrap">
-            <a href="../proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a>
+            <a href="../../../proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a>
             <button id="btnCompletar" 
         class="btn <?= $proyecto_completado ? 'btn-success' : 'btn-outline-success' ?>" 
         data-proyecto-id="<?= $id_proyecto_actual ?>" 
@@ -237,7 +237,7 @@ void loop() {
 
     </main>
 
-<?php include __DIR__ . '/../includes/footer.php'; ?>
+<?php include __DIR__ . '/../../../includes/footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
 function copiarCodigo() {

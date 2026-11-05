@@ -10,10 +10,10 @@ $active_page = 'inicio';
   <meta name="description" content="Aprendé Arduino, electrónica y robótica con tutoriales prácticos y proyectos paso a paso en ARDUNOVA.">
   <title>ARDUNOVA | Aprendé Arduino creando</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261021-1">
+  <link rel="stylesheet" href="../../../assets/css/style.css?v=20261021-1">
 </head>
 <body>
-<?php include 'includes/header.php'; ?>
+<?php include '../../../includes/header.php'; ?>
 
 <main>
 <section class="hero">
@@ -24,8 +24,8 @@ $active_page = 'inicio';
         <h1>De la primera idea a tu próximo <span class="highlight">proyecto.</span></h1>
         <p>Aprendé Arduino con explicaciones claras, prácticas guiadas y proyectos que podés construir paso a paso.</p>
         <div class="hero-buttons d-flex flex-column flex-sm-row">
-          <a class="btn btn-gradient btn-lg" href="tutoriales.php">Empezar a aprender <span aria-hidden="true">→</span></a>
-          <a class="btn btn-outline-cyan btn-lg" href="proyectos.php">Ver proyectos</a>
+          <a class="btn btn-gradient btn-lg" href="../../../tutoriales.php">Empezar a aprender <span aria-hidden="true">→</span></a>
+          <a class="btn btn-outline-cyan btn-lg" href="../../../proyectos.php">Ver proyectos</a>
         </div>
         <ul class="hero-highlights d-flex flex-wrap" aria-label="Características de ARDUNOVA">
           <li>Sin experiencia previa</li>
@@ -44,19 +44,19 @@ $active_page = 'inicio';
 
           <div class="carousel-inner rounded-4 overflow-hidden shadow-lg">
             <div class="carousel-item active">
-              <img src="assets/img/ardui2.png" class="d-block w-100" alt="Placa Arduino Uno">
+              <img src="../../../assets/img/ardui2.png" class="d-block w-100" alt="Placa Arduino Uno">
               <div class="carousel-caption">
                 <span>Arduino desde cero</span>
               </div>
             </div>
             <div class="carousel-item">
-              <img src="assets/img/walle.jpg" class="d-block w-100" alt="Proyecto de robótica">
+              <img src="../../../assets/img/walle.jpg" class="d-block w-100" alt="Proyecto de robótica">
               <div class="carousel-caption">
                 <span>Robótica y creatividad</span>
               </div>
             </div>
             <div class="carousel-item">
-              <img src="assets/img/proyectos.jpg" class="d-block w-100" alt="Proyecto práctico">
+              <img src="../../../assets/img/proyectos.jpg" class="d-block w-100" alt="Proyecto práctico">
               <div class="carousel-caption">
                 <span>Proyectos para aprender haciendo</span>
               </div>
@@ -107,7 +107,7 @@ $active_page = 'inicio';
       <h2 class="section-title mb-1">Ideas que podés construir</h2>
       <p class="section-subtitle mb-0">Proyectos guiados para construir, practicar y animarte a experimentar.</p>
     </div>
-    <a class="home-text-link" href="proyectos.php">Ver todos los proyectos <span aria-hidden="true">→</span></a>
+    <a class="home-text-link" href="../../../proyectos.php">Ver todos los proyectos <span aria-hidden="true">→</span></a>
   </div>
 
   <div id="projectsCarousel" class="carousel slide project-carousel" data-bs-ride="false" aria-label="Proyectos destacados">
@@ -122,13 +122,12 @@ $active_page = 'inicio';
           <div class="col-12 col-md-6">
             <article class="card home-project-card h-100">
               <div class="card-image">
-                <img alt="Semáforo inteligente" src="assets/img/semaforo.png"/>
+                <img alt="Semáforo inteligente" src="../../../assets/img/semaforo.png"/>
               </div>
               <div class="card-body">
                 <span class="tag-nivel principiante">Principiante</span>
                 <h3>Semáforo inteligente</h3>
-                <p>Estructuración básica de temporizaciones de luces viales.</p>
-                <a class="btn btn-gradient mt-1 w-100" href="proyecto/SemaforoA.php">Ver proyecto <span aria-hidden="true">→</span></a>
+                <p>Estructuración básica de temporizaciones de luces viales.</p>                  <a class="btn btn-gradient mt-1 w-100" href="../proyecto/SemaforoA.php">Ver proyecto <span aria-hidden="true">→</span></a>
               </div>
             </article>
           </div>
@@ -136,13 +135,13 @@ $active_page = 'inicio';
           <div class="col-12 col-md-6">
             <article class="card home-project-card h-100">
               <div class="card-image">
-                <img alt="Robot seguidor de línea" src="assets/img/robot-seguidor-linea.png"/>
+                <img alt="Robot seguidor de línea" src="../../../assets/img/robot-seguidor-linea.png"/>
               </div>
               <div class="card-body">
                 <span class="tag-nivel intermedio">Intermedio</span>
                 <h3>Auto Seguidor de Línea</h3>
                 <p>Diseño de un robot móvil autónomo con sensores infrarrojos.</p>
-                <a class="btn btn-gradient mt-1 w-100" href="proyecto/seguidorlinea.php">Ver proyecto <span aria-hidden="true">→</span></a>
+                <a class="btn btn-gradient mt-1 w-100" href="../proyecto/seguidorlinea.php">Ver proyecto <span aria-hidden="true">→</span></a>
               </div>
             </article>
           </div>
@@ -154,13 +153,13 @@ $active_page = 'inicio';
           <div class="col-12 col-md-6">
             <article class="card home-project-card h-100">
               <div class="card-image">
-                <img alt="Pantalla LCD" src="assets/img/lcd.jpg"/>
+                <img alt="Pantalla LCD" src="../../../assets/img/lcd.jpg"/>
               </div>
               <div class="card-body">
                 <span class="tag-nivel principiante">Principiante</span>
                 <h3>Pantalla LCD</h3>
                 <p>Conocé cómo mostrar información en una pantalla usando Arduino.</p>
-                <a class="btn btn-gradient mt-1 w-100" href="proyecto/lcddinamica.php">Ver proyecto <span aria-hidden="true">→</span></a>
+                <a class="btn btn-gradient mt-1 w-100" href="../proyecto/lcddinamica.php">Ver proyecto <span aria-hidden="true">→</span></a>
               </div>
             </article>
           </div>
@@ -168,13 +167,13 @@ $active_page = 'inicio';
           <div class="col-12 col-md-6">
             <article class="card home-project-card h-100">
               <div class="card-image">
-                <img alt="Sensor ultrasónico" src="assets/img/ultrasonico.jpg"/>
+                <img alt="Sensor ultrasónico" src="../../../assets/img/ultrasonico.jpg"/>
               </div>
               <div class="card-body">
                 <span class="tag-nivel intermedio">Intermedio</span>
                 <h3>Sensor Ultrasónico</h3>
                 <p>Aprendé a medir distancias y usar sensores en tus proyectos.</p>
-                <a class="btn btn-gradient mt-1 w-100" href="proyecto/SensorUltrasonico.php">Ver proyecto <span aria-hidden="true">→</span></a>
+                <a class="btn btn-gradient mt-1 w-100" href="../proyecto/SensorUltrasonico.php">Ver proyecto <span aria-hidden="true">→</span></a>
               </div>
             </article>
           </div>
@@ -204,9 +203,9 @@ $active_page = 'inicio';
 
     <div class="row g-4">
       <div class="col-12 col-md-4">
-        <a class="learning-card" href="principiantes/principiantes.php">
+        <a class="learning-card" href="../principiantes/principiantes.php">
           <div class="learning-card-image">
-            <img src="assets/img/principiante.png" alt="Placa Arduino para comenzar desde cero">
+            <img src="../../../assets/img/principiante.png" alt="Placa Arduino para comenzar desde cero">
             <span>01 · Fundamentos</span>
           </div>
           <div class="learning-card-body">
@@ -217,9 +216,9 @@ $active_page = 'inicio';
         </a>
       </div>
       <div class="col-12 col-md-4">
-        <a class="learning-card" href="intermedio/intermedio.php">
+        <a class="learning-card" href="../intermedio/intermedio.php">
           <div class="learning-card-image">
-            <img src="assets/img/intermedio.jpg" alt="Proyecto electrónico de nivel intermedio">
+            <img src="../../../assets/img/intermedio.jpg" alt="Proyecto electrónico de nivel intermedio">
             <span>02 · Práctica</span>
           </div>
           <div class="learning-card-body">
@@ -230,9 +229,9 @@ $active_page = 'inicio';
         </a>
       </div>
       <div class="col-12 col-md-4">
-        <a class="learning-card" href="avanzado/avanzado.php">
+        <a class="learning-card" href="../avanzado/avanzado.php">
           <div class="learning-card-image">
-            <img src="assets/img/avanzado.png" alt="Proyecto avanzado de electrónica y robótica">
+            <img src="../../../assets/img/avanzado.png" alt="Proyecto avanzado de electrónica y robótica">
             <span>03 · Innovación</span>
           </div>
           <div class="learning-card-body">
@@ -249,13 +248,13 @@ $active_page = 'inicio';
         <span class="home-cta-eyebrow">Tu próximo proyecto empieza acá</span>
         <h2>La mejor forma de aprender tecnología es creando.</h2>
       </div>
-      <a class="btn btn-light" href="tutoriales.php">Explorar tutoriales <span aria-hidden="true">→</span></a>
+      <a class="btn btn-light" href="../../../tutoriales.php">Explorar tutoriales <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
 </main>
 
-<?php include 'includes/chatbot.php'; ?>
-<?php include 'includes/footer.php'; ?>
+<?php include '../../../includes/chatbot.php'; ?>
+<?php include '../../../includes/footer.php'; ?>
 </body>
 </html>

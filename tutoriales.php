@@ -43,7 +43,7 @@ $active_page = 'tutoriales';
               <span class="tag-nivel principiante">Principiante</span>
               <h3>Nivel principiante</h3>
               <p>Aprende los conceptos principales de Arduino, el entorno de programación y los primeros proyectos.</p>
-              <a class="btn btn-gradient mt-1 w-100" href="principiantes/principiantes.php">
+              <a class="btn btn-gradient mt-1 w-100" href="src/views/principiantes/principiantes.php">
                 Comenzar 
               </a>
             </div>
@@ -60,7 +60,7 @@ $active_page = 'tutoriales';
               <span class="tag-nivel intermedio">Intermedio</span>
               <h3>Nivel intermedio</h3>
               <p>Trabaja con sensores, entradas analógicas, motores y diferentes componentes electrónicos.</p>
-              <a class="btn btn-gradient mt-1 w-100" href="intermedio/intermedio.php">
+              <a class="btn btn-gradient mt-1 w-100" href="src/views/intermedio/intermedio.php">
                 Comenzar
               </a>
             </div>
@@ -77,7 +77,7 @@ $active_page = 'tutoriales';
               <span class="tag-nivel avanzado">Avanzado</span>
               <h3>Nivel avanzado</h3>
               <p>Aprende comunicaciones, librerías y proyectos más completos utilizando Arduino.</p>
-              <a class="btn btn-gradient mt-1 w-100" href="avanzado/avanzado.php">
+              <a class="btn btn-gradient mt-1 w-100" href="src/views/avanzado/avanzado.php">
                 Comenzar
               </a>
             </div>

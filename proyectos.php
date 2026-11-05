@@ -70,7 +70,7 @@ $active_page = 'proyectos';
             El clásico "Hola Mundo" del hardware. Aprendé el control básico del ciclo de procesamiento interno de salidas digitales.
           </p>
 
-          <a class="btn btn-gradient mt-1 w-100" href="proyecto/ledblink.php">
+          <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/ledblink.php">
             Ver Proyecto
           </a>
 
@@ -104,7 +104,7 @@ $active_page = 'proyectos';
             Desplegá textos fijos y dinámicos con desplazamiento lateral programado controlando el contraste del dispositivo.
           </p>
 
-          <a class="btn btn-gradient mt-1 w-100" href="proyecto/lcddinamica.php">
+          <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/lcddinamica.php">
             Ver Proyecto
           </a>
 
@@ -138,7 +138,7 @@ $active_page = 'proyectos';
             Diseño funcional de un cruce peatonal sincronizado empleando temporizaciones algorítmicas secuenciales.
           </p>
 
-          <a class="btn btn-gradient mt-1 w-100" href="proyecto/SemaforoA.php">
+          <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/SemaforoA.php">
             Ver Proyecto
           </a>
 
@@ -172,7 +172,7 @@ $active_page = 'proyectos';
             Medición precisa de proximidad calculando el tiempo de retorno de ondas de sonido de alta frecuencia.
           </p>
 
-          <a class="btn btn-gradient mt-1 w-100" href="proyecto/SensorUltrasonico.php">
+          <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/SensorUltrasonico.php">
             Ver Proyecto
           </a>
 
@@ -206,7 +206,7 @@ $active_page = 'proyectos';
             Automatizá el encendido de luces de tu hogar utilizando relevadores eléctricos seguros y sensores de presencia.
           </p>
 
-          <a class="btn btn-gradient mt-1 w-100" href="proyecto/domotica.php">
+          <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/domotica.php">
             Ver Proyecto
           </a>
 
@@ -240,7 +240,7 @@ $active_page = 'proyectos';
             Integración total de motores de corriente continua, puentes H de potencia y algoritmos lógicos PID.
           </p>
 
-          <a class="btn btn-gradient mt-1 w-100" href="proyecto/seguidorlinea.php">
+          <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/seguidorlinea.php">
             Ver Proyecto
           </a>
 
@@ -274,7 +274,7 @@ $active_page = 'proyectos';
             Aprendé a controlar un LED utilizando un botón pulsador y las entradas y salidas digitales de Arduino.
           </p>
 
-          <a class="btn btn-gradient mt-1 w-100" href="proyecto/ledboton.php">
+          <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/ledboton.php">
             Ver Proyecto
           </a>
 
@@ -308,7 +308,7 @@ $active_page = 'proyectos';
             Aprendé a controlar la intensidad de un LED utilizando un potenciómetro y una salida PWM de Arduino.
           </p>
 
-          <a class="btn btn-gradient mt-1 w-100" href="proyecto/potenciometro.php">
+          <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/potenciometro.php">
             Ver Proyecto
           </a>
 
@@ -342,7 +342,7 @@ $active_page = 'proyectos';
             Utilizá un sensor LDR para detectar la cantidad de luz del ambiente y controlar diferentes LEDs mediante Arduino.
           </p>
 
-          <a class="btn btn-gradient mt-1 w-100" href="proyecto/sensorluZ.php">
+          <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/sensorluZ.php">
             Ver Proyecto
           </a>
 
@@ -376,7 +376,7 @@ $active_page = 'proyectos';
             Automatizá el riego de una planta utilizando sensores y Arduino para detectar cuándo es necesario activar el sistema.
           </p>
 
-          <a class="btn btn-gradient mt-1 w-100" href="proyecto/riego.php">
+          <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/riego.php">
             Ver Proyecto
           </a>
 
@@ -410,7 +410,7 @@ $active_page = 'proyectos';
             Construí un robot capaz de detectar obstáculos mediante sensores y modificar su recorrido automáticamente.
           </p>
 
-          <a class="btn btn-gradient mt-1 w-100" href="proyecto/robotobstaculos.php">
+          <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/robotobstaculos.php">
             Ver Proyecto
           </a>
 
@@ -444,7 +444,7 @@ $active_page = 'proyectos';
             Aprendé a controlar la posición de un servomotor utilizando Arduino y programación.
           </p>
 
-          <a class="btn btn-gradient mt-1 w-100" href="proyecto/servoMotor.php">
+          <a class="btn btn-gradient mt-1 w-100" href="src/views/proyecto/servoMotor.php">
             Ver Proyecto
           </a>
 
