@@ -39,7 +39,7 @@
         <div class="col-12 col-lg-5">
             <div class="card h-100">
                 <div class="card-image">
-                    <img src="<? $base = 'a/Ardunova' ?>assets/img/robotobstaculos.jpg" alt="Componentes del proyecto Robot Esquivador de Obstáculos">
+                    <img src="<?= $base ?>assets/img/robotobstaculos.jpg" alt="Componentes del proyecto Robot Esquivador de Obstáculos">
                 </div>
             </div>
         </div>
@@ -158,7 +158,7 @@ void detener() {
         </div>
 
         <div class="text-center button-container">
-           <a href="<?= $base = 'a/Ardunova' ?>/../../../proyecto/proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a>
+           <a href="<?= $base ?>proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a>
         </div>
     </section>
 </main>

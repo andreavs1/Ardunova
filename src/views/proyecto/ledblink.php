@@ -62,7 +62,7 @@ void loop() {
     <p class="mb-0">El LED se prenderá y apagará cada segundo de forma continua.</p>
   </div>
   <div class="text-center button-container">
-    <a href="<?= $base = 'a/Ardunova' ?>/../../../proyecto/proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a>
+    <a href="<?= $base ?>proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a>
 </div></section>
 </main>
 <?php include __DIR__ . '/../../../includes/footer.php'; ?>

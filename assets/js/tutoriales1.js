@@ -13,7 +13,7 @@ async function loadLesson() {
     const lessonId = urlParams.get('id') || '1';
 
     try {
-        const response = await fetch('tutoriales.json');
+        const response = await fetch('../../../assets/js/tutoriales1.json');
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: No se pudo cargar tutoriales.json`);
         }
@@ -395,7 +395,7 @@ async function loadLesson() {
                 btnNext.disabled = true;
 
                 try {
-                    const respuesta = await fetch('../guardar_progreso.php', {
+                    const respuesta = await fetch('../../../guardar_progreso.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'

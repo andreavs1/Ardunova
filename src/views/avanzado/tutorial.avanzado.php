@@ -30,6 +30,6 @@ $active_page = 'tutoriales';
     <?php include __DIR__ . '/../../../includes/footer.php'; ?>
 
     <!-- Motor dinámico JavaScript con versión anti-caché -->
-    <script src="../../assets/js/tutoriales3.js"></script>
+    <script src="../../../assets/js/tutoriales3.js"></script>
 </body>
 </html>

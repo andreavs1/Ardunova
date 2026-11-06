@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['usuario'])) { header('Location: login.php'); exit(); }
-include 'conexion.php';
+if (!isset($_SESSION['usuario'])) { header('Location: auth/login.php'); exit(); }
+include __DIR__ . '/../config/conexion.php';
 
 $nombre = $_SESSION['usuario'];
 
@@ -12,7 +12,7 @@ $stmt->execute();
 $usuario = $stmt->get_result()->fetch_assoc();
 
 if (!$usuario) { session_destroy();
- header('Location: login.php'); exit(); }
+ header('Location: auth/login.php'); exit(); }
 
 $id_usuarios = $usuario['id_usuarios'];
 $inicial = strtoupper(substr($usuario['nombre'], 0, 1));

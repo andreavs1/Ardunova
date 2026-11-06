@@ -12,7 +12,7 @@ async function loadLesson() {
 
     try {
         // Carga con ruta relativa explícita y timestamp anti-caché
-        const response = await fetch('tutoriales.json');
+        const response = await fetch('../../../assets/js/tutoriales3.json');
         
         if (!response.ok) {
             throw new Error(`No se pudo acceder a tutoriales.json (Código HTTP: ${response.status})`);
@@ -260,7 +260,7 @@ async function loadLesson() {
                     }
 
                     // Petición AJAX centralizada para guardar el progreso
-                    fetch('../guardar_progreso.php', {
+                    fetch('../../../guardar_progreso.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',

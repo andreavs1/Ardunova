@@ -57,7 +57,7 @@
             </div>
         </section>
         <div class="text-center button-container">
-            <a href="<?= $base = 'a/Ardunova' ?>/../../../proyecto/proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a>
+            <a href="<?= BASE_URL ?>proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a>
         </div>
     </main>
 <?php include __DIR__ . '/../../../includes/footer.php'; ?>

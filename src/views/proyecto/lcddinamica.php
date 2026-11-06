@@ -74,7 +74,7 @@
             </div>
         </section>
         <div class="text-center button-container my-4">
-            <a href="<?= $base = 'a/Ardunova' ?>/../../../proyecto/proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a>
+            <a href="<?= $base ?>proyectos.php" class="btn btn-outline-cyan">← Volver a Proyectos</a>
         </div>
     </main>
     

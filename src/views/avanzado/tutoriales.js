@@ -260,7 +260,7 @@ async function loadLesson() {
                     }
 
                     // Petición AJAX centralizada para guardar el progreso
-                    fetch('../guardar_progreso.php', {
+                    fetch('../../../guardar_progreso.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',

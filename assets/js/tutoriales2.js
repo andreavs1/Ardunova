@@ -11,7 +11,7 @@ async function loadLesson() {
     const lessonId = urlParams.get('id') || '9';
 
     try {
-        const response = await fetch('tutoriales.json');
+        const response = await fetch('../../../assets/js/tutoriales2.json');
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: No se pudo cargar tutoriales.json`);
         }
@@ -374,7 +374,7 @@ async function loadLesson() {
                     }
 
                     // Petición AJAX para guardar el progreso en el archivo central de la raíz
-                    fetch('../guardar_progreso.php', {
+                    fetch('../../../guardar_progreso.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
