@@ -48,6 +48,13 @@ $active_page = 'tutoriales';
   </div>
 </section>
 
+<!-- LINK / BOTÓN AL SIMULADOR WOKWI -->
+<section class="container section-container pt-2 pb-2 text-center">
+    <a href="https://wokwi.com" target="_blank" class="btn btn-gradient w-100 py-3 fw-bold">
+        🚀 Abrir Simulador de Arduino en Wokwi
+    </a>
+</section>
+
 <!-- GRILLA DE TUTORIALES -->
 <section class="container section-container pt-3">
 

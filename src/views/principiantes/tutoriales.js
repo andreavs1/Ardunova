@@ -8,27 +8,24 @@ async function loadLesson() {
     const app = document.getElementById('app-tutorial');
     if (!app) return;
 
-    // Obtener el ID de la lección desde la URL (ej: ?id=1)
     const urlParams = new URLSearchParams(window.location.search);
     const lessonId = urlParams.get('id') || '1';
 
     try {
-        // Consultamos directo al script PHP que trae los datos de MySQL
         const response = await fetch(`obtener_tutorial.php?id=${lessonId}`);
-        
-        // Capturamos el texto crudo para verificar si PHP arrojó algún error en HTML
         const rawText = await response.text();
 
         if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: No se pudo cargar el tutorial desde la base de datos`);
+            throw new Error(`HTTP ${response.status}: No se pudo cargar el tutorial`);
         }
 
         let data;
+
         try {
             data = JSON.parse(rawText);
         } catch (e) {
             console.error("El servidor no devolvió un JSON válido:", rawText);
-            throw new Error("El archivo PHP devolvió un error de servidor o HTML en lugar de JSON. Revisá la consola.");
+            throw new Error("El archivo PHP devolvió un error de servidor o HTML.");
         }
 
         if (!data || data.error) {
@@ -36,20 +33,19 @@ async function loadLesson() {
                 <div class="container my-5 text-center">
                     <div class="alert alert-warning p-4 rounded-4 shadow-sm">
                         <h5 class="fw-bold">⚠️ Tutorial no encontrado</h5>
-                        <p class="mb-0 small">No existen contenidos cargados para la lección ID: <strong>${lessonId}</strong>.</p>
+                        <p class="mb-0 small">No existen contenidos para la lección ID: <strong>${lessonId}</strong>.</p>
                         <a href="?id=1" class="btn btn-outline-primary btn-sm mt-3">Volver al Tutorial 1</a>
                     </div>
                 </div>`;
             return;
         }
 
-        // Formateador para convertir **texto** a negrita
         const formatBold = (text) => text ? text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') : '';
 
-        // Mezclar aleatoriamente las opciones del quiz
-        const shuffledQuizOptions = data.quiz?.opciones
-            ? [...data.quiz.opciones].sort(() => Math.random() - 0.5)
-            : [];
+        const rawOptions = data.quiz?.opciones || [];
+        const shuffledQuizOptions = Array.from(
+            new Map(rawOptions.map(item => [item.texto, item])).values()
+        );
 
         app.innerHTML = `
             <div class="container py-4" style="max-width: 1000px;">
@@ -160,30 +156,25 @@ async function loadLesson() {
                         background-color: #eff6ff;
                         transform: translateX(4px);
                     }
-                    .pulse-badge {
-                        animation: pulseGlow 2s infinite;
-                    }
-                    @keyframes pulseGlow {
-                        0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
-                        70% { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); }
-                        100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
-                    }
                 </style>
 
-                <!-- Hero Cabecera -->
                 <header class="hero-ardunova rounded-4 p-4 p-md-5 mb-5 text-white position-relative overflow-hidden">
                     <div class="position-relative z-1">
-                        <div class="d-flex align-items-center gap-2 mb-3">
-                            <span class="badge px-3 py-2 rounded-pill bg-info bg-opacity-10 text-info border border-info border-opacity-25 font-monospace pulse-badge" style="font-size: 0.8rem;">
+                        <div class="d-flex align-items-center gap-2 mb-3 flex-wrap">
+                            <span class="badge px-3 py-2 rounded-pill bg-info bg-opacity-10 text-info border border-info border-opacity-25 font-monospace" style="font-size: 0.8rem;">
                                 ${data.badge || 'PRINCIPIANTE'}
                             </span>
+
+                            ${data.completado ? `
+                                <span class="badge px-3 py-2 rounded-pill bg-success text-white">
+                                    ✓ COMPLETADO
+                                </span>
+                            ` : ''}
                         </div>
                         <h1 class="fw-bold display-6 text-white mb-2">${data.titulo}</h1>
                         <p class="fs-6 text-light opacity-75 mb-0">${data.subtitulo}</p>
                     </div>
                 </header>
-
-                <!-- Concepto Principal -->
                 ${data.concepto_principal ? `
                 <section class="card card-glow shadow-sm mb-4 p-4" style="border-left: 6px solid #06b6d4 !important;">
                     <div class="d-flex align-items-start gap-3">
@@ -198,7 +189,6 @@ async function loadLesson() {
                 </section>
                 ` : ''}
 
-                <!-- Funciones y Detalles Clave -->
                 ${data.funciones_clave && data.funciones_clave.length > 0 ? `
                 <h3 class="h5 fw-bold text-dark mb-3">Especificaciones y Funciones Clave</h3>
                 <div class="row g-3 mb-5">
@@ -233,7 +223,6 @@ async function loadLesson() {
                 </div>
                 ` : ''}
 
-                <!-- Bloque de Código -->
                 ${data.codigo_ejemplo ? `
                 <section class="card code-glow rounded-4 mb-5 overflow-hidden shadow-lg">
                     <div class="card-header bg-black bg-opacity-50 border-bottom border-secondary border-opacity-25 py-3 px-4 d-flex justify-content-between align-items-center">
@@ -253,7 +242,6 @@ async function loadLesson() {
                 </section>
                 ` : ''}
 
-                <!-- Simulador Wokwi Integrado -->
                 ${data.simulador_wokwi ? `
                 <section class="card card-glow shadow-sm mb-5 overflow-hidden">
                     <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center justify-content-between">
@@ -265,11 +253,7 @@ async function loadLesson() {
                     <div class="card-body p-4 bg-light bg-opacity-50">
                         <p class="small text-muted mb-3">${formatBold(data.simulador_wokwi.instruccion)}</p>
                         <div class="ratio ratio-16x9 rounded-4 border border-2 border-info shadow-sm bg-white overflow-hidden mb-3" style="max-height: 460px;">
-                            <iframe 
-                                src="https://wokwi.com/projects/${data.simulador_wokwi.project_id}?embed=1" 
-                                title="Simulador Wokwi Arduino" 
-                                allow="autoplay">
-                            </iframe>
+                            <iframe src="https://wokwi.com/projects/${data.simulador_wokwi.project_id}?embed=1" title="Simulador Wokwi Arduino" allow="autoplay"></iframe>
                         </div>
                         ${data.simulador_wokwi.nota ? `
                         <div class="p-3 bg-white border rounded-3 text-secondary small shadow-sm">
@@ -280,7 +264,6 @@ async function loadLesson() {
                 </section>
                 ` : ''}
 
-                <!-- Simulador de Consola/Lógica -->
                 ${data.simulador_logica ? `
                 <section class="card card-glow shadow-sm mb-5 p-4">
                     <h3 class="h6 fw-bold text-dark mb-1 d-flex align-items-center gap-2">
@@ -306,7 +289,6 @@ async function loadLesson() {
                 </section>
                 ` : ''}
 
-                <!-- Quiz Interactivo -->
                 ${data.quiz ? `
                 <section class="card card-glow shadow-sm p-4 mb-5" style="border-top: 5px solid #a855f7 !important;">
                     <div class="d-flex align-items-center gap-2 mb-3">
@@ -317,9 +299,7 @@ async function loadLesson() {
                     <p class="fw-bold text-dark mb-3" style="font-size: 1rem;">${data.quiz.pregunta}</p>
                     <div class="d-flex flex-column gap-2 mb-3">
                         ${shuffledQuizOptions.map(opt => `
-                        <button class="btn text-start p-3 quiz-btn-interactive" 
-                                style="font-size: 0.9rem;" 
-                                data-correct="${opt.es_correcta}">
+                        <button class="btn text-start p-3 quiz-btn-interactive" style="font-size: 0.9rem;" data-correct="${opt.es_correcta}">
                             ${opt.texto}
                         </button>
                         `).join('')}
@@ -327,28 +307,27 @@ async function loadLesson() {
                     <div id="quiz-feedback" class="small fw-bold mt-2"></div>
                 </section>
                 ` : ''}
-
-                <!-- Paginación y Navegación -->
                 <footer class="d-flex justify-content-between align-items-center pt-4 border-top">
-                    <button id="btn-prev" class="btn btn-outline-secondary px-4 py-2 rounded-3 fw-semibold" style="font-size: 0.9rem;">
-                        ← Lección Anterior
+                    <button id="btn-prev" class="btn btn-outline-secondary px-3 px-md-4 py-2 rounded-3 fw-semibold" style="font-size: 0.85rem;">
+                        ← <span class="d-none d-sm-inline">Lección </span>Anterior
                     </button>
-                    <span class="text-muted font-monospace small">Lección ${lessonId} de 24</span>
-                    <button id="btn-next" class="btn btn-ardunova px-4 py-2" style="font-size: 0.9rem;" ${data.quiz ? 'disabled' : ''}>
-                        Siguiente Lección →
+                    <span class="text-muted font-monospace small px-2">Lección ${lessonId} de 24</span>
+                    <button id="btn-next" class="btn btn-ardunova px-3 px-md-4 py-2" style="font-size: 0.85rem;" ${data.quiz && !data.completado ? 'disabled' : ''}>
+                        <span class="d-none d-sm-inline">Siguiente </span>Lección →
                     </button>
                 </footer>
             </div>
         `;
 
-        // MANEJADOR DE EVENTO NATIVO: Desplegar detalles técnicos
         document.querySelectorAll('.btn-details-custom').forEach(btn => {
             btn.addEventListener('click', () => {
                 const targetId = btn.getAttribute('data-bs-target');
                 const targetEl = document.querySelector(targetId);
+
                 if (targetEl) {
                     const isExpanded = btn.getAttribute('aria-expanded') === 'true';
                     btn.setAttribute('aria-expanded', !isExpanded);
+
                     if (isExpanded) {
                         targetEl.classList.remove('show');
                         targetEl.style.display = 'none';
@@ -360,24 +339,54 @@ async function loadLesson() {
             });
         });
 
-        // Eventos para la Consola Interactiva
         const selectSim = document.getElementById('sim-input');
         const outputSim = document.getElementById('sim-output');
+
         if (selectSim && outputSim && data.simulador_logica) {
             const respuestasMap = Object.fromEntries(data.simulador_logica.opciones.map(o => [o.id, o.respuesta]));
+
             selectSim.addEventListener('change', (e) => {
                 outputSim.textContent = respuestasMap[e.target.value];
             });
         }
 
-        // Navegación y guardado del progreso
         const currentNum = parseInt(lessonId, 10);
         const btnNext = document.getElementById('btn-next');
         const btnPrev = document.getElementById('btn-prev');
         const quizBtns = document.querySelectorAll('.quiz-btn-interactive');
         const feedback = document.getElementById('quiz-feedback');
 
-        let isQuizPassed = false;
+        let isQuizPassed = data.completado === true;
+
+        if (isQuizPassed && btnNext) {
+            btnNext.disabled = false;
+        }
+
+        quizBtns.forEach(button => {
+            button.addEventListener('click', () => {
+                const isCorrect = button.getAttribute('data-correct') === 'true';
+                
+                quizBtns.forEach(btn => {
+                    btn.classList.remove('border-success', 'bg-success', 'bg-opacity-10', 'border-danger', 'bg-danger');
+                });
+
+                if (isCorrect) {
+                    button.classList.add('border-success', 'bg-success', 'bg-opacity-10');
+                    if (feedback) {
+                        feedback.className = "small fw-bold mt-2 text-success";
+                        feedback.textContent = data.quiz.mensaje_correcto || "¡Correcto!";
+                    }
+                    isQuizPassed = true;
+                    if (btnNext) btnNext.disabled = false;
+                } else {
+                    button.classList.add('border-danger', 'bg-danger', 'bg-opacity-10');
+                    if (feedback) {
+                        feedback.className = "small fw-bold mt-2 text-danger";
+                        feedback.textContent = data.quiz.mensaje_incorrecto || "Incorrecto. Intentá de nuevo.";
+                    }
+                }
+            });
+        });
 
         if (btnPrev) {
             if (currentNum <= 1) {
@@ -393,7 +402,7 @@ async function loadLesson() {
 
         if (btnNext) {
             if (currentNum >= 24) {
-                btnNext.textContent = 'Finalizar tutorial';
+                btnNext.textContent = 'Finalizar curso';
             }
 
             btnNext.addEventListener('click', async () => {
@@ -408,80 +417,45 @@ async function loadLesson() {
                     const respuesta = await fetch('../guardar_progreso.php', {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
+                            'Content-Type': 'application/json'
                         },
-                        body: `id_tutorial=${encodeURIComponent(currentNum)}`
+                        credentials: 'include',
+                        body: JSON.stringify({ id_tutorial: currentNum })
                     });
 
                     const resultado = await respuesta.json();
 
-                    if (!respuesta.ok || !resultado.ok) {
-                        throw new Error(resultado.mensaje || 'No se pudo guardar el progreso.');
-                    }
-
-                    if (currentNum < 24) {
-                        window.location.search = `?id=${currentNum + 1}`;
+                    if (resultado.ok) {
+                        if (currentNum >= 24) {
+                            window.location.href = '../perfil.php';
+                        } else {
+                            window.location.href = `?id=${currentNum + 1}`;
+                        }
                     } else {
-                        window.location.href = '../perfil.php';
+                        alert('No se pudo guardar el progreso: ' + (resultado.mensaje || ''));
+                        btnNext.disabled = false;
                     }
 
                 } catch (error) {
-                    alert(error.message || 'Ocurrió un error al guardar el progreso.');
+                    console.error('Error al guardar el progreso:', error);
+                    alert('Ocurrió un error al guardar el progreso.');
                     btnNext.disabled = false;
                 }
             });
         }
 
-        if (quizBtns.length > 0 && feedback && data.quiz) {
-            quizBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    quizBtns.forEach(b => {
-                        b.style.backgroundColor = '#f8fafc';
-                        b.style.borderColor = '#e2e8f0';
-                        b.style.color = '#212529';
-                    });
-
-                    if (btn.dataset.correct === 'true') {
-                        isQuizPassed = true;
-
-                        btn.style.backgroundColor = '#dcfce7';
-                        btn.style.borderColor = '#22c55e';
-                        btn.style.color = '#15803d';
-
-                        feedback.className = 'small fw-bold mt-2 text-success';
-                        feedback.textContent = data.quiz.mensaje_correcto + ' ¡Ya podés avanzar a la siguiente lección!';
-
-                        if (btnNext) {
-                            btnNext.disabled = false;
-                            btnNext.classList.remove('opacity-50');
-                        }
-
-                    } else {
-                        isQuizPassed = false;
-
-                        btn.style.backgroundColor = '#fee2e2';
-                        btn.style.borderColor = '#ef4444';
-                        btn.style.color = '#b91c1c';
-
-                        feedback.className = 'small fw-bold mt-2 text-danger';
-                        feedback.textContent = data.quiz.mensaje_incorrecto + ' Respondé correctamente para avanzar.';
-
-                        if (btnNext) {
-                            btnNext.disabled = true;
-                            btnNext.classList.add('opacity-50');
-                        }
-                    }
-                });
-            });
-        }
-
     } catch (error) {
-        app.innerHTML = `
-            <div class="container my-5 text-center">
-                <div class="alert alert-danger p-4 rounded-4 shadow-sm">
-                    <h5 class="fw-bold text-danger">Error al cargar el tutorial</h5>
-                    <p class="mb-0 font-monospace small text-secondary">${error.message}</p>
-                </div>
-            </div>`;
+        console.error("Error al cargar la lección:", error);
+        const app = document.getElementById('app-tutorial');
+        if (app) {
+            app.innerHTML = `
+                <div class="container my-5 text-center">
+                    <div class="alert alert-danger p-4 rounded-4 shadow-sm">
+                        <h5 class="fw-bold">❌ Error de carga</h5>
+                        <p class="mb-0 small">${error.message}</p>
+                        <a href="?id=1" class="btn btn-outline-dark btn-sm mt-3">Reintentar / Ir al Tutorial 1</a>
+                    </div>
+                </div>`;
+        }
     }
 }
