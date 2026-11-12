@@ -11,13 +11,13 @@ $active_page = 'tutoriales';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nivel Avanzado - ARDUNOVA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css?v=20261020-5">
+    <link rel="stylesheet" href="../../../assets/css/style.css?v=20261020-5">
 
 </head>
 
 <body>
 
-<?php include __DIR__ . '/../includes/header.php'; ?>
+<?php include __DIR__ . '/../../../includes/header.php'; ?>
 
 <main>
 
@@ -65,7 +65,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="../assets/img/librerias.png" alt="Librerías" class="card-img-top">
+                    <img src="../../../assets/img/librerias.png" alt="Librerías" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel avanzado">Tutorial 17</span>
@@ -80,7 +80,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="../assets/img/lcd.jpg" alt="Pantallas LCD" class="card-img-top">
+                    <img src="../../../assets/img/lcd.jpg" alt="Pantallas LCD" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel avanzado">Tutorial 18</span>
@@ -95,7 +95,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="../assets/img/bluetooth.jpg" alt="Comunicación Bluetooth" class="card-img-top">
+                    <img src="../../../assets/img/bluetooth.jpg" alt="Comunicación Bluetooth" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel avanzado">Tutorial 19</span>
@@ -110,7 +110,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="../assets/img/wifi.jpg" alt="Comunicación Wi-Fi" class="card-img-top">
+                    <img src="../../../assets/img/wifi.jpg" alt="Comunicación Wi-Fi" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel avanzado">Tutorial 20</span>
@@ -125,7 +125,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="../assets/img/i2c.png" alt="Comunicación I2C" class="card-img-top">
+                    <img src="../../../assets/img/i2c.png" alt="Comunicación I2C" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel avanzado">Tutorial 21</span>
@@ -140,7 +140,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="../assets/img/comunicacion.png" alt="Comunicación SPI" class="card-img-top">
+                    <img src="../../../assets/img/comunicacion.png" alt="Comunicación SPI" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel avanzado">Tutorial 22</span>
@@ -155,7 +155,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="../assets/img/componentes.png" alt="Varios componentes" class="card-img-top">
+                    <img src="../../../assets/img/componentes.png" alt="Varios componentes" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel avanzado">Tutorial 23</span>
@@ -170,7 +170,7 @@ $active_page = 'tutoriales';
         <div class="col-12 col-sm-6 col-lg-4 tarjeta-tutorial">
             <article class="card">
                 <div class="card-image">
-                    <img src="../assets/img/errores.png" alt="Solución de errores" class="card-img-top">
+                    <img src="../../../assets/img/errores.png" alt="Solución de errores" class="card-img-top">
                 </div>
                 <div class="card-body">
                     <span class="tag-nivel avanzado">Tutorial 24</span>
@@ -191,7 +191,7 @@ $active_page = 'tutoriales';
 
 </main>
 
-<?php include __DIR__ . '/../includes/footer.php'; ?>
+<?php include __DIR__ . '/../../../includes/footer.php'; ?>
 
 <!-- Script limpio para la búsqueda (ignora tildes comunes) -->
 <script>

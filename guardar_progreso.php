@@ -13,7 +13,7 @@ try {
         exit();
     }
 
-    include __DIR__ . '/conexion.php';
+    include __DIR__ . '/src/config/conexion.php';
     if (!isset($conn) || !$conn) {
         throw new Exception('Error de conexión a la base de datos.');
     }
@@ -30,7 +30,8 @@ try {
     }
 
     $id_usuarios = $resultado_user->fetch_assoc()['id_usuarios'];
-    $id_tutorial = isset($_POST['id_tutorial']) ? intval($_POST['id_tutorial']) : 0;
+    $input = json_decode(file_get_contents('php://input'), true);
+    $id_tutorial = intval($input['id_tutorial'] ?? $_POST['id_tutorial'] ?? 0);
 
     if ($id_tutorial <= 0) {
         echo json_encode(['ok' => false, 'mensaje' => 'ID de tutorial inválido.']);

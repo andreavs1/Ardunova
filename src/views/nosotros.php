@@ -17,7 +17,6 @@ $active_page = 'nosotros';
 
 <main class="container section-container py-4">
   <section class="page-heading text-center mb-5">
-  <span class="section-kicker">Nuestra comunidad</span>
   <h1 class="section-title mb-3">Sobre ARDUNOVA</h1>
   <p class="lead mb-0 mx-auto page-intro">
     Somos un espacio dedicado a democratizar la enseñanza de la tecnología, facilitando el aprendizaje práctico de electrónica, programación y robótica mediante hardware libre.

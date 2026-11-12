@@ -3,7 +3,7 @@
 session_start();
 
 header('Content-Type: application/json; charset=utf-8');
-include '../conexion.php';
+require_once __DIR__ . '/../../config/conexion.php';
 
 $id_tutorial = isset($_GET['id']) ? intval($_GET['id']) : 1;
 

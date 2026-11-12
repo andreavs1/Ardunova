@@ -24,7 +24,6 @@ $active_page = 'donaciones';
 
     <!-- Encabezado -->
     <section class="page-heading text-center mb-5">
-        <span class="section-kicker">Sumate a nuestra misión</span>
 
         <h1 class="section-title mb-3">
             Ayudanos a construir el futuro

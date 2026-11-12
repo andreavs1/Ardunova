@@ -18,7 +18,6 @@ $active_page = 'tutoriales';
   <main>
     <section class="container section-container pb-0">
       <div class="page-heading">
-        <span class="section-kicker">Aprendizaje paso a paso</span>
         <h1 class="section-title">Tutoriales de Arduino</h1>
         <p>Elegí tu nivel y aprendé electrónica, programación y robótica con guías prácticas.</p>
       </div>
@@ -88,8 +87,8 @@ $active_page = 'tutoriales';
 
   </main>
 
-  <?php include 'includes/chatbot.php'; ?>
-  <?php include 'includes/footer.php';?>
+  <?php include __DIR__ . '/includes/chatbot.php'; ?>
+  <?php include __DIR__ . '/includes/footer.php'; ?>
 
 </body>
 </html>

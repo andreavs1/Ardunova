@@ -16,7 +16,6 @@ $active_page = 'recursos';
 <?php include __DIR__ . '/../../includes/header.php'; ?>
 <main class="container section-container">
 <div class="page-heading">
-  <span class="section-kicker">Material para tus proyectos</span>
   <h1 class="section-title">Recursos descargables</h1>
   <p>Consultá guías y materiales de apoyo para acompañar tu aprendizaje.</p>
 </div>

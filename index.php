@@ -103,7 +103,6 @@ $active_page = 'inicio';
 <section class="container section-container">
   <div class="section-heading">
     <div>
-      <span class="section-kicker">Aprendé haciendo</span>
       <h2 class="section-title mb-1">Ideas que podés construir</h2>
       <p class="section-subtitle mb-0">Proyectos guiados para construir, practicar y animarte a experimentar.</p>
     </div>
@@ -196,7 +195,6 @@ $active_page = 'inicio';
   <div class="container">
     <div class="section-heading">
       <div>
-        <span class="section-kicker">Tu próximo paso</span>
         <h2 class="section-title mb-1">Aprendé a tu ritmo</h2>
         <p class="section-subtitle mb-0">Un recorrido pensado para acompañarte desde tus primeros circuitos.</p>
       </div>
@@ -246,7 +244,6 @@ $active_page = 'inicio';
 
     <div class="home-cta">
       <div>
-        <span class="home-cta-eyebrow">Tu próximo proyecto empieza acá</span>
         <h2>La mejor forma de aprender tecnología es creando.</h2>
       </div>
       <a class="btn btn-light" href="tutoriales.php">Explorar tutoriales <span aria-hidden="true">→</span></a>

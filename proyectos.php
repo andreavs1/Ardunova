@@ -26,7 +26,6 @@ $active_page = 'proyectos';
 <main class="container section-container">
 
   <div class="page-heading">
-    <span class="section-kicker">Inspirate y construí</span>
     <h1 class="section-title">Proyectos prácticos</h1>
     <p>Elegí una idea, seguí los pasos y llevá tus conocimientos de Arduino a la práctica.</p>
   </div>
