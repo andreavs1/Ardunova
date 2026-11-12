@@ -1,0 +1,450 @@
+{
+    "9": {
+      "badge": "INTERMEDIO - TUTORIAL 9",
+      "titulo": "9. Condicionales",
+      "subtitulo": "Aprendé a tomar decisiones en tu código utilizando las estructuras if, else if y else.",
+      "concepto_principal": {
+        "titulo": "Toma de Decisiones y Lógica Booleana",
+        "descripcion": "Las estructuras condicionales son el pilar de la lógica de programación en Arduino. Permiten que el microcontrolador evalué condiciones en tiempo real y tome decisiones ejecutando diferentes bloques de código según si una expresión resulta ser **verdadera (true)** o **falsa (false)**. Utilizando **if**, el programa verifica una expresión; con **else if** podemos encadenar múltiples evaluaciones alternativas, y con **else** definimos una acción por defecto cuando ninguna de las condiciones anteriores se cumple."
+      },
+      "funciones_clave": [
+        {
+          "icono": "🔀",
+          "titulo": "if (condición) { ... }",
+          "descripcion": "Estructura principal que evalúa una expresión lógica entre paréntesis.",
+          "detalle": "Si la expresión lógica devuelve `true` (un valor distinto de 0 o 5V en lecturas digitales), se ejecutan las sentencias encerradas entre sus llaves `{}`. Si devuelve `false`, se omite el bloque."
+        },
+        {
+          "icono": "⛓️",
+          "titulo": "else if (condición) { ... }",
+          "descripcion": "Permite evaluar condiciones secundarias cuando la primera resultó ser falsa.",
+          "detalle": "Podés concatenar tantos `else if` como necesites para crear arboles de decisión complejos, como evaluar distintos niveles de batería o rangos de temperatura."
+        },
+        {
+          "icono": "↩️",
+          "titulo": "else { ... }",
+          "descripcion": "Bloque de código alternativo de seguridad o por defecto.",
+          "detalle": "Se ejecuta de manera obligatoria si absolutamente ninguna de las condiciones previas (`if` o `else if`) resultó ser verdadera."
+        },
+        {
+          "icono": "⚖️",
+          "titulo": "Operadores de Comparación (==, !=, >, <)",
+          "descripcion": "Símbolos especiales utilizados para comparar dos valores dentro de la condición.",
+          "detalle": "Los principales operadores son: igual a (`==`), diferente de (`!=`), mayor que (`>`), menor que (`<`), mayor o igual (`>=`) y menor o igual (`<=`). **¡Cuidado!** No confundir el operador de comparación `==` con el de asignación `=`."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "ControlNivelLed.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "const int pinBoton = 2;\nconst int pinLedVerde = 12;\nconst int pinLedRojo = 13;\n\nvoid setup() {\n  pinMode(pinBoton, INPUT); // Configura el botón como entrada\n  pinMode(pinLedVerde, OUTPUT);\n  pinMode(pinLedRojo, OUTPUT);\n}\n\nvoid loop() {\n  int estadoBoton = digitalRead(pinBoton); // Lee el estado del botón\n\n  if (estadoBoton == HIGH) {\n    // Si el botón está presionado (5V)\n    digitalWrite(pinLedVerde, HIGH);\n    digitalWrite(pinLedRojo, LOW);\n  } else {\n    // Si el botón NO está presionado (0V)\n    digitalWrite(pinLedVerde, LOW);\n    digitalWrite(pinLedRojo, HIGH);\n  }\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador de Toma de Decisiones en Tiempo Real",
+        "instruccion": "Presioná **Play** en el simulador. Al hacer clic sobre el pulsador verás cómo la estructura `if / else` conmuta al instante entre el LED Verde y el LED Rojo.",
+        "project_id": "345678901234567890",
+        "nota": "Conexión técnica: El botón utiliza una resistencia de pulldown de 10kΩ a GND para asegurar un estado LOW (0V) estable mientras no se presiona."
+      },
+      "quiz": {
+        "pregunta": "¿Qué bloque de código se ejecuta cuando la condición dentro del paréntesis del `if` resulta ser Falsa (false)?",
+        "opciones": [
+          { "texto": "El bloque encerrado dentro del else", "es_correcta": true },
+          { "texto": "Se ejecuta el código dentro de void setup()", "es_correcta": false },
+          { "texto": "Se detiene la corriente eléctrica de la placa", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Excelente! Cuando la condición evaluada es falsa, el programa salta directamente al bloque `else`.",
+        "mensaje_incorrecto": "Incorrecto. Cuando la condición dentro de `if` es falsa, se ejecuta la sección dentro de `else`."
+      }
+    },
+    "10": {
+      "badge": "INTERMEDIO - TUTORIAL 10",
+      "titulo": "10. Bucles",
+      "subtitulo": "Automatización y repetición iterativa de código utilizando estructuras for y while.",
+      "concepto_principal": {
+        "titulo": "Estructuras Repetitivas (Loops)",
+        "descripcion": "Los bucles en programación permiten ejecutar de forma repetida un mismo bloque de instrucciones un número determinado de veces o mientras se cumpla una condición específica. En Arduino son indispensables para tareas como hacer parpadear luces con un patrón, recorrer arreglos (arrays) de pines, promediar lecturas de sensores o crear secuencias animadas de LED. El bucle **for** se emplea cuando conocemos de antemano la cantidad exacta de repeticiones, mientras que **while** repite el código de forma indefinida hasta que una condición cambia."
+      },
+      "funciones_clave": [
+        {
+          "icono": "🔄",
+          "titulo": "for (inicio; condición; incremento)",
+          "descripcion": "Bucle con contador integrado ideal para iteraciones fijas.",
+          "detalle": "Consta de tres partes: **inicio** (declara la variable contador, ej: `int i = 0`), **condición** (evalúa si sigue repitiendo, ej: `i < 10`) e **incremento** (aumenta el contador en cada vuelta, ej: `i++`)."
+        },
+        {
+          "icono": "⏳",
+          "titulo": "while (condición) { ... }",
+          "descripcion": "Repite un bloque de código mientras la condición sea verdadera.",
+          "detalle": "Se evalúa al inicio de cada ciclo. Si la condición es falsa desde el principio, el bloque de código dentro del `while` no se ejecutará ninguna vez."
+        },
+        {
+          "icono": "🔁",
+          "titulo": "do { ... } while (condición);",
+          "descripcion": "Garantiza la ejecución del código al menos una vez antes de verificar la condición.",
+          "detalle": "A diferencia del `while` estándar, las instrucciones dentro del `do` se ejecutan primero y recién al final se evalúa si debe repetirse el ciclo."
+        },
+        {
+          "icono": "🛑",
+          "titulo": "break / continue",
+          "descripcion": "Instrucciones especiales para controlar el flujo interno de los bucles.",
+          "detalle": "`break` interrumpe de forma inmediata el bucle y sale de él, mientras que `continue` omite el resto del código del ciclo actual y salta directamente a la siguiente iteración."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "SecuenciaBarridoLED.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "// Secuencia estilo 'Auto Fantástico' usando un bucle for\nvoid setup() {\n  // Configura los pines del 2 al 6 como salidas\n  for (int pin = 2; pin <= 6; pin++) {\n    pinMode(pin, OUTPUT);\n  }\n}\n\nvoid loop() {\n  // Enciende y apaga secuencialmente del pin 2 al 6\n  for (int pin = 2; pin <= 6; pin++) {\n    digitalWrite(pin, HIGH);\n    delay(100);\n    digitalWrite(pin, LOW);\n  }\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador de Barrido Secuencial con Bucle for",
+        "instruccion": "Iniciá el simulador para observar cómo el bucle `for` recorre automáticamente los pines digitales encendiendo la tira de LEDs en secuencia.",
+        "project_id": "345678901234567890",
+        "nota": "Ventaja técnica: El bucle `for` permite configurar 5 pines con solo 3 líneas de código dentro de `setup()`."
+      },
+      "quiz": {
+        "pregunta": "¿Qué estructura repetitiva se utiliza preferentemente cuando conocemos exactamente la cantidad de repeticiones que debe dar el contador?",
+        "opciones": [
+          { "texto": "Bucle for", "es_correcta": true },
+          { "texto": "Estructura if", "es_correcta": false },
+          { "texto": "Función delay()", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Muy bien! El bucle `for` incluye contador, condición e incremento en su misma declaración.",
+        "mensaje_incorrecto": "Incorrecto. Se utiliza el bucle `for`."
+      }
+    },
+    "11": {
+      "badge": "INTERMEDIO - TUTORIAL 11",
+      "titulo": "11. Sensores",
+      "subtitulo": "Fundamentos de recolección de datos del entorno físico mediante Arduino.",
+      "concepto_principal": {
+        "titulo": "Transducción y Captura del Entorno",
+        "descripcion": "Un sensor es un dispositivo **transductor** capaz de detectar magnitudes físicas o químicas del mundo real (como temperatura, humedad, presión, luz, presencia o inclinación) y convertirlas en una señal eléctrica (voltaje o corriente) que el microcontrolador de Arduino puede leer y procesar. Los sensores se dividen en dos categorías principales: **Digitales** (que solo entregan dos estados como 0V y 5V) y **Analógicos** (que entregan una variación continua de voltaje proporcional a la variable medida)."
+      },
+      "funciones_clave": [
+        {
+          "icono": "📡",
+          "titulo": "Sensores Digitales (ON/OFF)",
+          "descripcion": "Emiten valores discretos de voltaje (HIGH / LOW).",
+          "detalle": "Ejemplos comunes incluyen detectores de movimiento PIR, sensores de inclinación o finales de carrera. Se leen con la función `digitalRead()`."
+        },
+        {
+          "icono": "📈",
+          "titulo": "Sensores Analógicos (Rango Continuo)",
+          "descripcion": "Generan variaciones continuas de voltaje entre 0V y 5V.",
+          "detalle": "Ejemplos comunes son fotorresistencias (LDR), sensores NTC de temperatura o micrófonos. Se leen a través de los pines analógicos A0-A5 con `analogRead()`."
+        },
+        {
+          "icono": "☀️",
+          "titulo": "Fotorresistencia (LDR)",
+          "descripcion": "Sensor cuyo valor de resistencia varía en función de la luz incidente.",
+          "detalle": "A mayor intensidad de luz incidente sobre su superficie, menor es su resistencia eléctrica interna."
+        },
+        {
+          "icono": "🌡️",
+          "titulo": "Sensor de Temperatura LM35 / NTC",
+          "descripcion": "Dispositivos analógicos que modifican su tensión según los grados Celsius.",
+          "detalle": "El LM35 entrega exactamente 10mV por cada grado Celsius alcanzado (ejemplo: 250mV corresponden a 25°C)."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "LecturaLDR.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "const int pinLDR = A0;\nconst int pinLedAlarma = 13;\n\nvoid setup() {\n  pinMode(pinLedAlarma, OUTPUT);\n  Serial.begin(9600); // Inicia el monitor serie\n}\n\nvoid loop() {\n  int valorLuz = analogRead(pinLDR); // Lee el voltaje del sensor\n  \n  Serial.print(\"Valor de luz: \");\n  Serial.println(valorLuz);\n  \n  // Si hay oscuridad (valor bajo)\n  if (valorLuz < 300) {\n    digitalWrite(pinLedAlarma, HIGH); // Enciende la luz de emergencia\n  } else {\n    digitalWrite(pinLedAlarma, LOW);\n  }\n  \n  delay(500);\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador de Crepuscular con Sensor LDR",
+        "instruccion": "Presioná **Play** y hacé clic sobre el módulo LDR. Desplazá el control para simular el paso de la luz a la noche y observa el encendido automático del LED.",
+        "project_id": "345678901234567890",
+        "nota": "Acondicionamiento de señal: La LDR está conectada en configuración de divisor de tensión junto a una resistencia fija de 10kΩ."
+      },
+      "quiz": {
+        "pregunta": "¿Qué función cumple un transductor o sensor dentro de un circuito con Arduino?",
+        "opciones": [
+          { "texto": "Convertir variables físicas del entorno en señales eléctricas", "es_correcta": true },
+          { "texto": "Aumentar el voltaje suministrado por el cable USB", "es_correcta": false },
+          { "texto": "Guardar código ejecutable en la memoria FLASH", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Correcto! Los sensores traducen magnitudes físicas (como luz o calor) en voltajes procesables.",
+        "mensaje_incorrecto": "Incorrecto. La tarea de un sensor es capturar variables físicas y convertirlas en señales eléctricas."
+      }
+    },
+    "12": {
+      "badge": "INTERMEDIO - TUTORIAL 12",
+      "titulo": "12. Lecturas analógicas",
+      "subtitulo": "Muestreo de señales continuas usando el Conversor Analógico a Digital (ADC).",
+      "concepto_principal": {
+        "titulo": "Conversión Analógica a Digital (ADC)",
+        "descripcion": "A diferencia de las señales digitales que solo toman los valores 0V o 5V, el mundo real es analógico y presenta infinitos tonos o niveles. Para poder interpretar estos niveles, las placas Arduino disponen de pines de entrada analógica (A0 a A5) conectados a un interno **Conversor Analógico a Digital (ADC)**. En la placa Arduino UNO, este ADC tiene una resolución de **10 bits**, lo que significa que divide el rango completo de voltaje (de 0V a 5V) en **1024 niveles discretos**, asignando el entero **0 a los 0 Voltios** y el entero **1023 a los 5 Voltios**."
+      },
+      "funciones_clave": [
+        {
+          "icono": "📊",
+          "titulo": "analogRead(pinAnalógico)",
+          "descripcion": "Muestra la tensión de entrada y devuelve un número entre 0 y 1023.",
+          "detalle": "Toma aproximadamente 100 microsegundos en realizar la lectura de la muestra de tensión en el pin seleccionado."
+        },
+        {
+          "icono": "📐",
+          "titulo": "Resolución de 10 Bits (1024 Niveles)",
+          "descripcion": "Precisión de medición del Conversor Analógico.",
+          "detalle": "Cada paso entero devuelto por `analogRead()` equivale a una variación de tensión de aprox. **4.88 mV** (calculado como 5V / 1024)."
+        },
+        {
+          "icono": "📍",
+          "titulo": "Pines Analógicos (A0 a A5)",
+          "descripcion": "Pines de entrada dedicados exclusivamente al muestreo de tensión.",
+          "detalle": "También pueden ser reconfigurados mediante software para funcionar como pines digitales estándar si el proyecto lo requiere."
+        },
+        {
+          "icono": "⚡",
+          "titulo": "analogReference(tipo)",
+          "descripcion": "Permite modificar el voltaje de referencia máximo utilizado para el ADC.",
+          "detalle": "Por defecto utiliza la referencia interna de **5V (DEFAULT)**, pero puede cambiarse a **INTERNAL (1.1V)** para ganar máxima precisión en señales de bajo voltaje."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "VoltímetroSimple.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "const int pinAnalogo = A0;\n\nvoid setup() {\n  Serial.begin(9600); // Inicializa comunicación para mostrar resultados\n}\n\nvoid loop() {\n  int valorADC = analogRead(pinAnalogo); // Lee de 0 a 1023\n  \n  // Convierte el valor digital de nuevo a voltios reales\n  float voltaje = valorADC * (5.0 / 1023.0);\n  \n  Serial.print(\"Lectura ADC: \");\n  Serial.print(valorADC);\n  Serial.print(\" | Voltaje Real: \");\n  Serial.print(voltaje);\n  Serial.println(\" V\");\n  \n  delay(300);\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador de Medición con ADC de 10 Bits",
+        "instruccion": "Iniciá la simulación y abrí el Monitor Serie. Verás cómo la función `analogRead()` mapea en vivo el voltaje hacia valores entre 0 y 1023.",
+        "project_id": "345678901234567890",
+        "nota": "Fórmula matemática aplicada: `Voltaje = ADC_Read * (5.0 / 1023.0)`."
+      },
+      "quiz": {
+        "pregunta": "¿Qué valor entero devolverá la función analogRead() cuando la entrada analógica recibe una tensión exacta de 5 Voltios?",
+        "opciones": [
+          { "texto": "1023", "es_correcta": true },
+          { "texto": "255", "es_correcta": false },
+          { "texto": "500", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Excelente! 1023 representa el nivel máximo alcanzable por el ADC de 10 bits a 5 Voltios.",
+        "mensaje_incorrecto": "Incorrecto. El rango de 10 bits va de 0 a 1023, asignando 1023 a los 5V."
+      }
+    },
+    "13": {
+      "badge": "INTERMEDIO - TUTORIAL 13",
+      "titulo": "13. Potenciómetro",
+      "subtitulo": "Uso de resistencias variables y la función map() para control de parámetros.",
+      "concepto_principal": {
+        "titulo": "Divisores de Tensión Ajustables y Escalado",
+        "descripcion": "El potenciómetro es un componente pasivo de tres terminales que actúa como un **divisor de tensión variable**. Sus terminales extremos se conectan a 5V y GND, mientras que el terminal central (cursor o wiper) entrega un voltaje proporcional a la posición física de la perilla. Al leer este cursor con un pin analógico, obtenemos una cifra entre 0 y 1023. Para adaptar esa cifra a otras aplicaciones (como controlar la intensidad de brillo de un LED con PWM, que solo acepta de 0 a 255), utilizamos la función matemática de escala denominada **map()**."
+      },
+      "funciones_clave": [
+        {
+          "icono": "🎛️",
+          "titulo": "map(valor, in_min, in_max, out_min, out_max)",
+          "descripcion": "Re-escala proporcionalmente un valor desde un rango de entrada a un rango de salida.",
+          "detalle": "Sintaxis: `map(lectura, 0, 1023, 0, 255)` toma la lectura analógica de 10 bits y la convierte a una escala de 8 bits sin pérdida de proporción."
+        },
+        {
+          "icono": "💡",
+          "titulo": "analogWrite(pinPWM, valor8bits)",
+          "descripcion": "Genera una señal PWM (Modulación por Ancho de Pulsos) en pines compatibles (3, 5, 6, 9, 10 y 11).",
+          "detalle": "Permite simular una salida analógica mediante pulsos digitales de frecuencia constante, aceptando valores enteros entre **0 (0% duty cycle)** y **255 (100% duty cycle)**."
+        },
+        {
+          "icono": "📌",
+          "titulo": "Conexión Física de 3 Pines",
+          "descripcion": "Esquema de cableado del potenciómetro.",
+          "detalle": "Pin 1 a 5V, Pin 3 a GND (Masa) y Pin 2 (Centro) a la entrada analógica A0."
+        },
+        {
+          "icono": "🔒",
+          "titulo": "constrain(valor, min, max)",
+          "descripcion": "Función complementaria que limita un número dentro de un rango determinado.",
+          "detalle": "Garantiza que el valor re-escalado nunca sobrepase los límites mínimo o máximo establecidos, evitando errores en variables."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "DimmerLED.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "const int pinPotencimetro = A0;\nconst int pinLedPWM = 9; // Pin con soporte para PWM (~)\n\nvoid setup() {\n  pinMode(pinLedPWM, OUTPUT);\n}\n\nvoid loop() {\n  int valorEntrada = analogRead(pinPotencimetro); // Lectura 0 a 1023\n  \n  // Escala de 0-1023 a 0-255 para el brillo del LED\n  int brillo = map(valorEntrada, 0, 1023, 0, 255);\n  \n  analogWrite(pinLedPWM, brillo); // Modula la intensidad del LED\n  delay(10);\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador de Atenuador (Dimmer) con Potenciómetro",
+        "instruccion": "Hacé clic sobre la perilla del potenciómetro dentro del simulador y arrastrala para regular suavemente la intensidad luminosa del LED.",
+        "project_id": "345678901234567890",
+        "nota": "Observe el uso del pin 9 (marcado con el símbolo ~) indispensable para generar salidas de intensidad variable vía PWM."
+      },
+      "quiz": {
+        "pregunta": "¿Qué función oficial de Arduino nos permite re-escalar el rango 0-1023 obtenido por un potenciómetro al rango 0-255 requerido por la función analogWrite()?",
+        "opciones": [
+          { "texto": "map()", "es_correcta": true },
+          { "texto": "convert()", "es_correcta": false },
+          { "texto": "scaleValue()", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Excelente! La función `map()` realiza la regla de tres simple y traslada rangos de valores automáticamente.",
+        "mensaje_incorrecto": "Incorrecto. Se utiliza la función oficial `map()`."
+      }
+    },
+    "14": {
+      "badge": "INTERMEDIO - TUTORIAL 14",
+      "titulo": "14. Sensor HC-SR04",
+      "subtitulo": "Medición ultrasónica de distancia e integración de tiempo de vuelo de ondas.",
+      "concepto_principal": {
+        "titulo": "Principio de Funcionamiento del Ultrasonido",
+        "descripcion": "El sensor HC-SR04 es un módulo económico de medición de distancia por ultrasonido que permite detectar obstáculos en un rango entre **2 cm y 400 cm**. Su funcionamiento se basa en la **Ecolocalización** (similar a los murciélagos): emite una ráfaga de ondas de sonido de alta frecuencia (40 kHz) a través de un transmisor piezoeléctrico (**Trigger**). Estas ondas viajan por el aire, rebotan al colisionar con un objeto y retornan hacia un micrófono receptor (**Echo**). Midiendo el tiempo transcurrido entre la emisión y la recepción de la onda, Arduino calcula la distancia exacta mediante la velocidad conocida del sonido en el aire (343 m/s)."
+      },
+      "funciones_clave": [
+        {
+          "icono": "⏱️",
+          "titulo": "pulseIn(pin, HIGH)",
+          "descripcion": "Mide en microsegundos (µs) la duración de un pulso eléctrico que entra por un pin.",
+          "detalle": "Pone el temporizador a contar cuando el pin `Echo` pasa a estado HIGH y detiene el conteo exacto cuando el eco regresa y vuelve a estado LOW."
+        },
+        {
+          "icono": "📢",
+          "titulo": "Pin Trigger (Disparo)",
+          "descripcion": "Pin de salida encargado de emitir la ráfaga ultrasónica.",
+          "detalle": "Requiere recibir un pulso en estado HIGH de **al menos 10 microsegundos** de duración enviado desde Arduino para iniciar la transmisión del sonido."
+        },
+        {
+          "icono": "👂",
+          "titulo": "Pin Echo (Receptor)",
+          "descripcion": "Pin de entrada que permanece en HIGH durante el viaje de la onda.",
+          "detalle": "El tiempo que este pin permanezca activo en estado HIGH es directamente proporcional a la distancia recorrida por el sonido ida y vuelta."
+        },
+        {
+          "icono": "📐",
+          "titulo": "Fórmula Física de Distancia",
+          "descripcion": "Cálculo matemático para obtener la distancia en centímetros.",
+          "detalle": "Como la onda viaja de ida y vuelta, se aplica la relación: `Distancia (cm) = Tiempo (µs) / 58` (o dividiendo por 29 y luego entre 2)."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "MedidorUltrasonico.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "const int pinTrig = 9;\nconst int pinEcho = 10;\nconst int pinBuzzer = 6;\n\nvoid setup() {\n  pinMode(pinTrig, OUTPUT);\n  pinMode(pinEcho, INPUT);\n  pinMode(pinBuzzer, OUTPUT);\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  // Genera un pulso limpio en el Trigger de 10 microsegundos\n  digitalWrite(pinTrig, LOW);\n  delayMicroseconds(2);\n  digitalWrite(pinTrig, HIGH);\n  delayMicroseconds(10);\n  digitalWrite(pinTrig, LOW);\n  \n  // Mide el tiempo de retorno de la onda en el Echo\n  long duracion = pulseIn(pinEcho, HIGH);\n  \n  // Calcula la distancia en centímetros\n  int distancia = duracion / 58;\n  \n  Serial.print(\"Distancia detectada: \");\n  Serial.print(distancia);\n  Serial.println(\" cm\");\n  \n  // Alarma de proximidad: suena si un objeto está a menos de 15 cm\n  if (distancia < 15 && distancia > 0) {\n    digitalWrite(pinBuzzer, HIGH);\n  } else {\n    digitalWrite(pinBuzzer, LOW);\n  }\n  \n  delay(200);\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador de Sensor de Estacionamiento HC-SR04",
+        "instruccion": "Presioná Play, hacé clic sobre el sensor HC-SR04 y arrastrá la esfera objetivo para variar la distancia. Verás el tiempo de respuesta y la activación de la alarma serie.",
+        "project_id": "345678901234567890",
+        "nota": "Rango de operación real: Funciona con un ángulo de apertura de 15 grados y precisión de hasta 3 mm."
+      },
+      "quiz": {
+        "pregunta": "¿Cuál es la función del pin Trigger en el sensor ultrasónico HC-SR04?",
+        "opciones": [
+          { "texto": "Emitir el pulso de sonido ultrasónico hacia el ambiente", "es_correcta": true },
+          { "texto": "Escuchar y recibir el rebote del eco", "es_correcta": false },
+          { "texto": "Suministrar corriente de 5V al sensor", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Excelente! El pin Trigger actúa como emisor de las ondas de ultrasonido.",
+        "mensaje_incorrecto": "Incorrecto. Trigger dispara la onda ultrasónica y Echo escucha el retorno."
+      }
+    },
+    "15": {
+      "badge": "INTERMEDIO - TUTORIAL 15",
+      "titulo": "15. Servomotores",
+      "subtitulo": "Control de posicionamiento angular preciso usando la librería Servo.h.",
+      "concepto_principal": {
+        "titulo": "Servomecanismos y Control de Posición",
+        "descripcion": "Un **servomotor** es un actuador rotativo compuesto por un motor de corriente continua, una caja de engranajes reductora para multiplicar la fuerza (torque) y un circuito de control interno conectado a un potenciómetro de realimentación. A diferencia de un motor DC común que gira sin parar, un servomotor estándar de modelismo permite posicionar su eje en un ángulo exacto comprendido entre **0° y 180°**. Se controla mediante señales de modulación por ancho de pulsos de 50Hz (PWM) administradas de forma transparente con la librería oficial `<Servo.h>`."
+      },
+      "funciones_clave": [
+        {
+          "icono": "📦",
+          "titulo": "#include <Servo.h>",
+          "descripcion": "Librería estándar de C++ que incluye todas las funciones de control para servomotores.",
+          "detalle": "Permite controlar hasta 12 servomotores simultáneos en placas Arduino UNO sin necesidad de programar manualmente los tiempos de pulso PWM."
+        },
+        {
+          "icono": "🔗",
+          "titulo": "miServo.attach(pinDigital)",
+          "descripcion": "Asocia un objeto Servo a un pin digital de control.",
+          "detalle": "Se invoca dentro de `setup()`. Por ejemplo: `miServo.attach(9)` configura el pin 9 como el canal de señal hacia el servo."
+        },
+        {
+          "icono": "🦾",
+          "titulo": "miServo.write(grados)",
+          "descripcion": "Ordena al eje del motor desplazarse al ángulo especificado.",
+          "detalle": "Acepta parámetros enteros entre **0 y 180**. El potenciómetro interno del servomotor ajusta la posición y mantiene el eje trabado en dicho ángulo."
+        },
+        {
+          "icono": "🔌",
+          "titulo": "Conexión de 3 Cables de Color",
+          "descripcion": "Identificación de los cables de conexión del servo estándar (ej: SG90).",
+          "detalle": "Cable **Marrón/Negro (GND)** a tierra, Cable **Rojo (VCC)** a 5V externos, Cable **Naranja/Amarillo (Señal)** al pin de datos configurado con `attach()`."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "ControlServomotor.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "#include <Servo.h> // Incluye la librería obligatoria\n\nServo miServo; // Crea el objeto servo\n\nvoid setup() {\n  miServo.attach(9); // Vincula la señal al pin digital 9\n}\n\nvoid loop() {\n  // Mueve suavemente el servomotor de 0 a 180 grados\n  for (int angulo = 0; angulo <= 180; angulo += 10) {\n    miServo.write(angulo);\n    delay(50); // Pausa para dar tiempo al movimiento mecánico\n  }\n  \n  // Regresa de 180 a 0 grados\n  for (int angulo = 180; angulo >= 0; angulo -= 10) {\n    miServo.write(angulo);\n    delay(50);\n  }\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador de Brazo Robot con Servomotor",
+        "instruccion": "Iniciá el simulador y observá cómo el eje del servomotor (SG90) realiza el barrido angular continuo de 0 a 180 grados.",
+        "project_id": "345678901234567890",
+        "nota": "Consumo de corriente: En proyectos reales con múltiples servos se recomienda alimentarlos con una fuente externa de 5V separada de la placa."
+      },
+      "quiz": {
+        "pregunta": "¿Qué librería estándar debemos incluir al inicio de nuestro sketch para utilizar las funciones avanzadas de control de servomotores?",
+        "opciones": [
+          { "texto": "<Servo.h>", "es_correcta": true },
+          { "texto": "<MotorController.h>", "es_correcta": false },
+          { "texto": "<EEPROM.h>", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Muy bien! Se incluye la librería nativa `<Servo.h>`.",
+        "mensaje_incorrecto": "Incorrecto. Se debe utilizar la librería oficial `<Servo.h>`."
+      }
+    },
+    "16": {
+      "badge": "INTERMEDIO - TUTORIAL 16",
+      "titulo": "16. Monitor Serial",
+      "subtitulo": "Diagnóstico, depuración y transmisión bidireccional de datos por UART/USB.",
+      "concepto_principal": {
+        "titulo": "Comunicación Serie UART (Universal Asynchronous Receiver-Transmitter)",
+        "descripcion": "El **Monitor Serial** es la consola integrada dentro del entorno de desarrollo que permite establecer una vía de comunicación de texto **bidireccional** entre la computadora y la placa Arduino mediante la interfaz USB. Es la herramienta principal para la **depuración de software (debugging)**, ya que permite imprimir en pantalla el valor actual de variables, verificar si el programa ingresó a una condición o enviar comandos desde el teclado del usuario para encender o apagar componentes en tiempo real."
+      },
+      "funciones_clave": [
+        {
+          "icono": "🚀",
+          "titulo": "Serial.begin(velocidadBaudios)",
+          "descripcion": "Inicializa el puerto serie definiendo la velocidad de transmisión.",
+          "detalle": "Se invoca en `setup()`. El valor estándar universal es **9600 baudios** (bits por segundo). Ambos extremos (Arduino y Monitor) deben usar la misma velocidad."
+        },
+        {
+          "icono": "🖨️",
+          "titulo": "Serial.print() / Serial.println()",
+          "descripcion": "Envía datos formateados en texto ASCII hacia la terminal.",
+          "detalle": "`Serial.print()` envía el texto de corrido, mientras que `Serial.println()` agrega un salto de línea (`\\r\\n`) automático al final de la cadena."
+        },
+        {
+          "icono": "📥",
+          "titulo": "Serial.available()",
+          "descripcion": "Comprueba si han llegado datos desde la PC al búfer de entrada de Arduino.",
+          "detalle": "Devuelve la cantidad de bytes o caracteres que están esperando ser leídos en la memoria intermedia."
+        },
+        {
+          "icono": "📖",
+          "titulo": "Serial.read() / Serial.readString()",
+          "descripcion": "Lee los datos entrantes enviados desde el Monitor Serie de la computadora.",
+          "detalle": "`Serial.read()` lee de a un solo carácter byte ASCII, mientras que `Serial.readString()` captura palabras o frases completas."
+        }
+      ],
+      "codigo_ejemplo": {
+        "titulo": "ComandosSeriales.ino",
+        "lenguaje": "C++ / Arduino",
+        "codigo": "const int pinLed = 13;\n\nvoid setup() {\n  pinMode(pinLed, OUTPUT);\n  Serial.begin(9600); // Configura el puerto a 9600 baudios\n  Serial.println(\"=== SISTEMA INICIALIZADO ===\");\n  Serial.println(\"Escriba '1' para Encender o '0' para Apagar:\");\n}\n\nvoid loop() {\n  // Verifica si el usuario envió algún carácter desde la PC\n  if (Serial.available() > 0) {\n    char comando = Serial.read(); // Lee el carácter recibido\n    \n    if (comando == '1') {\n      digitalWrite(pinLed, HIGH);\n      Serial.println(\"-> Estado: LED ENCENDIDO\");\n    } else if (comando == '0') {\n      digitalWrite(pinLed, LOW);\n      Serial.println(\"-> Estado: LED APAGADO\");\n    }\n  }\n}"
+      },
+      "simulador_wokwi": {
+        "titulo": "Simulador de Terminal de Comandos Serie",
+        "instruccion": "Iniciá el simulador, abrí la pestaña 'Serial Monitor' e ingresá el número 1 o 0 para encender y apagar remotamente el LED integrado de la placa.",
+        "project_id": "345678901234567890",
+        "nota": "Pines de hardware dedicados: Los pines 0 (RX) y 1 (TX) de la placa corresponden a las líneas de transmisión serie del microcontrolador."
+      },
+      "quiz": {
+        "pregunta": "¿Qué función debemos invocar dentro de void setup() para inicializar la comunicación con el Monitor Serial indicando la velocidad en baudios?",
+        "opciones": [
+          { "texto": "Serial.begin(9600)", "es_correcta": true },
+          { "texto": "Serial.start(9600)", "es_correcta": false },
+          { "texto": "Serial.openPort()", "es_correcta": false }
+        ],
+        "mensaje_correcto": "¡Correcto! `Serial.begin(9600)` configura e inicializa el hardware de comunicación UART.",
+        "mensaje_incorrecto": "Incorrecto. Se utiliza la función `Serial.begin(9600)`."
+      }
+    }
+  }
