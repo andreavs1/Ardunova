@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['usuario'])) { header('Location: login.php'); exit(); }
-include 'conexion.php';
+include __DIR__ . '/../config/conexion.php';
 
 $nombre = $_SESSION['usuario'];
 
@@ -62,10 +62,10 @@ $porcentaje_avanzado = round(($avanzado_completados / 8) * 100);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mi perfil - ARDUNOVA</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261020-5">
+  <link rel="stylesheet" href="/../assets/css/style.css?v=20261020-5">
 </head>
 <body>
-<?php $active_page = ''; include 'includes/header.php'; ?>
+<?php $active_page = ''; include __DIR__ . '../../../includes/header.php'; ?>
 <main class="perfil-page container my-4">
   <section class="perfil-header mb-4">
     <div class="row align-items-center g-3">
@@ -158,14 +158,14 @@ $porcentaje_avanzado = round(($avanzado_completados / 8) * 100);
       <div class="historial-vacio mt-2 text-center p-5 bg-white rounded-4 shadow-sm">
         <h3>No hay tutoriales completados</h3>
         <p class="text-muted">Empezá tu primer tutorial para verlo reflejado en tu perfil.</p>
-        <a href="tutoriales/principiantes.php" class="btn btn-gradient">Explorar tutoriales</a>
+        <a href="../tutoriales/principiantes.php" class="btn btn-gradient">Explorar tutoriales</a>
       </div>
     <?php endif; ?>
   </section>
 
-  <div class="text-center my-4"><a href="logout.php" class="btn btn-outline-danger">Cerrar sesión</a></div>
+  <div class="text-center my-4"><a href="../logout.php" class="btn btn-outline-danger">Cerrar sesión</a></div>
 </main>
-<?php include 'includes/chatbot.php'; ?>
-<?php include 'includes/footer.php'; ?>
+<?php include __DIR__ . '../../../includes/chatbot.php'; ?>
+<?php include __DIR__ . '../../../includes/footer.php'; ?>
 </body>
 </html>
