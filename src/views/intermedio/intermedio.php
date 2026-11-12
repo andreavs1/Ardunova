@@ -12,13 +12,13 @@ $active_page = 'tutoriales';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nivel Intermedio - ARDUNOVA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/style.css?v=20261020-5">
+    <link rel="stylesheet" href="../assets/css/style.css?v=20261020-5">
 
 </head>
 
 <body> 
 
-<?php include __DIR__ . '/../../../includes/header.php'; ?>
+<?php include __DIR__ . '/../includes/header.php'; ?>
 
 <main>
 
@@ -49,6 +49,13 @@ $active_page = 'tutoriales';
       </div>
     </div>
   </div>
+</section>
+
+<!-- LINK / BOTÓN AL SIMULADOR WOKWI -->
+<section class="container section-container pt-2 pb-2 text-center">
+    <a href="https://wokwi.com" target="_blank" class="btn btn-gradient w-100 py-3 fw-bold">
+        🚀 Abrir Simulador de Arduino en Wokwi
+    </a>
 </section>
 
 <!-- GRILLA DE TUTORIALES -->
@@ -185,7 +192,7 @@ $active_page = 'tutoriales';
 
 </main>
 
-<?php include __DIR__ . '/../../../includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>
 
 <!-- Script limpio para la búsqueda (ignora tildes comunes) -->
 <script>

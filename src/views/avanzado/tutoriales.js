@@ -11,17 +11,22 @@ async function loadLesson() {
     const lessonId = urlParams.get('id') || '17';
 
     try {
-        // Carga con ruta relativa explícita y timestamp anti-caché
-        const response = await fetch('tutoriales.json');
-        
+        const response = await fetch(`obtener_tutorial_avanzado.php?id=${lessonId}`);
+        const rawText = await response.text();
+
         if (!response.ok) {
-            throw new Error(`No se pudo acceder a tutoriales.json (Código HTTP: ${response.status})`);
+            throw new Error(`No se pudo acceder al tutorial (Código HTTP: ${response.status})`);
         }
 
-        const database = await response.json();
-        const data = database[lessonId];
+        let data;
+        try {
+            data = JSON.parse(rawText);
+        } catch (e) {
+            console.error("El servidor no devolvió un JSON válido:", rawText);
+            throw new Error("El archivo PHP devolvió un error de servidor o HTML en lugar de JSON. Revisá la consola.");
+        }
 
-        if (!data) {
+        if (!data || data.error) {
             app.innerHTML = `
                 <div class="container my-5 text-center">
                     <div class="alert alert-warning p-4 rounded-4 shadow-sm">
@@ -35,9 +40,10 @@ async function loadLesson() {
 
         const formatBold = (text) => text ? text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') : '';
 
-        const shuffledQuizOptions = data.quiz?.opciones 
-            ? [...data.quiz.opciones].sort(() => Math.random() - 0.5) 
-            : [];
+        const rawOptions = data.quiz?.opciones || [];
+        const shuffledQuizOptions = Array.from(
+            new Map(rawOptions.map(item => [item.texto, item])).values()
+        );
 
         app.innerHTML = `
             <div class="container py-2" style="max-width: 1000px;">
@@ -125,9 +131,16 @@ async function loadLesson() {
 
                 <!-- Header -->
                 <header class="hero-ardunova rounded-4 p-4 p-md-5 mb-5 text-white">
-                    <span class="badge px-3 py-2 rounded-pill bg-danger text-white border border-danger font-monospace mb-3" style="font-size: 0.8rem;">
-                        ${data.badge || 'AVANZADO'}
-                    </span>
+                    <div class="d-flex align-items-center gap-2 mb-3 flex-wrap">
+                        <span class="badge px-3 py-2 rounded-pill bg-danger text-white border border-danger font-monospace" style="font-size: 0.8rem;">
+                            ${data.badge || 'AVANZADO'}
+                        </span>
+                        ${data.completado ? `
+                            <span class="badge px-3 py-2 rounded-pill bg-success text-white">
+                                ✓ COMPLETADO
+                            </span>
+                        ` : ''}
+                    </div>
                     <h1 class="fw-bold display-6 text-white mb-2">${data.titulo}</h1>
                     <p class="fs-6 text-light opacity-75 mb-0">${data.subtitulo}</p>
                 </header>
@@ -219,24 +232,48 @@ async function loadLesson() {
                 </section>
                 ` : ''}
 
-                <!-- Footer Navegación -->
                 <footer class="d-flex justify-content-between align-items-center pt-4 border-top">
-                    <button id="btn-prev" class="btn btn-outline-secondary px-4 py-2 rounded-3 fw-semibold">
-                        ← Lección Anterior
+                    <button id="btn-prev" class="btn btn-outline-secondary px-3 px-md-4 py-2 rounded-3 fw-semibold" style="font-size: 0.85rem;">
+                        ← <span class="d-none d-sm-inline">Lección </span>Anterior
                     </button>
-                    <span class="text-muted font-monospace small">Lección ${lessonId} de 24</span>
-                    <button id="btn-next" class="btn btn-ardunova px-4 py-2" ${data.quiz ? 'disabled' : ''}>
-                        Siguiente Lección →
+                    <span class="text-muted font-monospace small px-2">Lección ${lessonId} de 24</span>
+                    <button id="btn-next" class="btn btn-ardunova px-3 px-md-4 py-2" style="font-size: 0.85rem;" ${data.quiz && !data.completado ? 'disabled' : ''}>
+                        <span class="d-none d-sm-inline">Siguiente </span>Lección →
                     </button>
                 </footer>
 
             </div>
         `;
 
-        let isQuizPassed = false;
         const currentNum = parseInt(lessonId, 10);
         const btnNext = document.getElementById('btn-next');
         const btnPrev = document.getElementById('btn-prev');
+        const quizBtns = document.querySelectorAll('.quiz-btn-interactive');
+        const feedback = document.getElementById('quiz-feedback');
+
+        let isQuizPassed = data.completado === true;
+// Si el tutorial ya estaba completado, bloquear las respuestas.
+if (data.completado) {
+    quizBtns.forEach(button => {
+        button.disabled = true;
+
+        if (button.getAttribute('data-correct') === 'true') {
+            button.classList.add('border-success', 'bg-success', 'bg-opacity-10');
+        }
+    });
+
+    if (feedback) {
+        feedback.className = "small fw-bold mt-2 text-success";
+        feedback.textContent = "✓ ¡Este tutorial ya está completado!";
+    }
+
+    if (btnNext) {
+        btnNext.disabled = false;
+    }
+}
+        if (isQuizPassed && btnNext) {
+            btnNext.disabled = false;
+        }
 
         if (btnPrev) {
             if (currentNum <= 17) btnPrev.classList.add('disabled');
@@ -249,64 +286,76 @@ async function loadLesson() {
 
         if (btnNext) {
             if (currentNum >= 24) {
-                btnNext.classList.add('disabled');
-            } else {
-                btnNext.addEventListener('click', (e) => {
-                    if (data.quiz && !isQuizPassed) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        alert('⚠️ Debes responder correctamente la pregunta del quiz para avanzar al siguiente tutorial.');
-                        return false;
-                    }
+                btnNext.textContent = 'Finalizar curso';
+            }
 
-                    // Petición AJAX centralizada para guardar el progreso
-                    fetch('../../../guardar_progreso.php', {
+            btnNext.addEventListener('click', async () => {
+                if (data.quiz && !isQuizPassed) {
+                    alert('Respondé correctamente el cuestionario para avanzar.');
+                    return;
+                }
+
+                btnNext.disabled = true;
+
+                try {
+                    // Petición idéntica mandando JSON y credenciales de sesión
+                    const respuesta = await fetch('../guardar_progreso.php', {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'Content-Type': 'application/json'
                         },
-                        body: `id_tutorial=${currentNum}`
-                    })
-                    .then(response => response.json())
-                    .then(dataResponse => {
-                        if (!dataResponse.ok) {
-                            console.error('Error al guardar el progreso:', dataResponse.mensaje);
-                        }
-                    })
-                    .catch(error => console.error('Error en la petición:', error));
-
-                    window.location.search = `?id=${currentNum + 1}`;
-                });
-            }
-        }
-
-        const quizBtns = document.querySelectorAll('.quiz-btn-interactive');
-        const feedback = document.getElementById('quiz-feedback');
-
-        if (quizBtns.length > 0 && feedback && data.quiz) {
-            quizBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    quizBtns.forEach(b => {
-                        b.style.backgroundColor = "#f8fafc";
-                        b.style.borderColor = "#e2e8f0";
-                        b.style.color = "#212529";
+                        credentials: 'include', // <--- Envía la cookie PHPSESSID
+                        body: JSON.stringify({ id_tutorial: currentNum })
                     });
 
-                    if (btn.dataset.correct === "true") {
+                    const resultado = await respuesta.json();
+
+                    if (resultado.ok) {
+                        if (currentNum >= 24) {
+                            window.location.href = '../perfil.php';
+                        } else {
+                            window.location.href = `?id=${currentNum + 1}`;
+                        }
+                    } else {
+                        alert('No se pudo guardar el progreso: ' + (resultado.mensaje || ''));
+                        btnNext.disabled = false;
+                    }
+
+                } catch (error) {
+                    console.error('Error al guardar el progreso:', error);
+                    alert('Ocurrió un error al guardar el progreso.');
+                    btnNext.disabled = false;
+                }
+            });
+        }
+
+        if (quizBtns.length > 0 && feedback && data.quiz) {
+            quizBtns.forEach(button => {
+                button.addEventListener('click', () => {
+if (data.completado) return;
+                    const isCorrect = button.getAttribute('data-correct') === 'true';
+
+                    quizBtns.forEach(btn => {
+                        btn.style.backgroundColor = "#f8fafc";
+                        btn.style.borderColor = "#e2e8f0";
+                        btn.style.color = "#212529";
+                    });
+
+                    if (isCorrect) {
                         isQuizPassed = true;
-                        btn.style.backgroundColor = "#dcfce7";
-                        btn.style.borderColor = "#22c55e";
-                        btn.style.color = "#15803d";
+                        button.style.backgroundColor = "#dcfce7";
+                        button.style.borderColor = "#22c55e";
+                        button.style.color = "#15803d";
                         feedback.className = "small fw-bold mt-2 text-success";
-                        feedback.textContent = data.quiz.mensaje_correcto + " ¡Ya podés avanzar a la siguiente lección!";
+                        feedback.textContent = (data.quiz.mensaje_correcto || "¡Correcto!") + " ¡Ya podés avanzar a la siguiente lección!";
                         if (btnNext) btnNext.disabled = false;
                     } else {
                         isQuizPassed = false;
-                        btn.style.backgroundColor = "#fee2e2";
-                        btn.style.borderColor = "#ef4444";
-                        btn.style.color = "#b91c1c";
+                        button.style.backgroundColor = "#fee2e2";
+                        button.style.borderColor = "#ef4444";
+                        button.style.color = "#b91c1c";
                         feedback.className = "small fw-bold mt-2 text-danger";
-                        feedback.textContent = data.quiz.mensaje_incorrecto + " Respondé correctamente para desbloquear la siguiente lección.";
+                        feedback.textContent = (data.quiz.mensaje_incorrecto || "Incorrecto.") + " Respondé correctamente para desbloquear la siguiente lección.";
                         if (btnNext) btnNext.disabled = true;
                     }
                 });
@@ -314,12 +363,15 @@ async function loadLesson() {
         }
 
     } catch (error) {
-        app.innerHTML = `
-            <div class="container my-5 text-center">
-                <div class="alert alert-danger p-4 rounded-4 shadow-sm" style="max-width: 600px; margin: 0 auto;">
-                    <h5 class="fw-bold text-danger mb-2">⚠️ Error de Carga</h5>
-                    <p class="mb-0 text-secondary small">${error.message}</p>
-                </div>
-            </div>`;
+        const app = document.getElementById('app-tutorial');
+        if (app) {
+            app.innerHTML = `
+                <div class="container my-5 text-center">
+                    <div class="alert alert-danger p-4 rounded-4 shadow-sm" style="max-width: 600px; margin: 0 auto;">
+                        <h5 class="fw-bold text-danger mb-2">⚠️ Error de Carga</h5>
+                        <p class="mb-0 text-secondary small">${error.message}</p>
+                    </div>
+                </div>`;
+        }
     }
 }
