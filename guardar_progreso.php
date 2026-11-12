@@ -1,7 +1,6 @@
 <?php
 session_start();
 header('Content-Type: application/json; charset=utf-8');
-
 // No mostrar errores HTML de PHP (rompen la respuesta JSON)
 ini_set('display_errors', 0);
 error_reporting(E_ALL);
